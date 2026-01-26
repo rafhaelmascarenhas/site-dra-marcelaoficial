@@ -13,12 +13,12 @@ export const Hero: React.FC = () => {
     }
   };
 
-  // Images for the carousel - ONLY Dra. Marcela photos (or high-end lookalikes for mockups)
+  // Images for the carousel - Local images from public folder
   const carouselImages = [
-    { src: "src: "/hero1.webp", alt: "Dra Marcela Brasil - Principal", alt: "Dra Marcela Brasil - Portrait" },
-    { src: "src: "/hero2.webp", alt: "Dra Marcela Brasil - Principal", alt: "Dra Marcela Brasil - Portrait", alt: "Dra Marcela Brasil - Clinic" },
-    { src: "src: "/hero3.webp", alt: "Dra Marcela Brasil - Principal", alt: "Dra Marcela Brasil - Portrait", alt: "Dra Marcela Brasil - Consultation" },
-    { src: "src: "/hero4.webp", alt: "Dra Marcela Brasil - Principal", alt: "Dra Marcela Brasil - Portrait", alt: "Dra Marcela Brasil - Close up" }, // Repeating main for effect if needed
+    { src: "/hero1.webp", alt: "Dra Marcela Brasil - Principal" },
+    { src: "/hero2.webp", alt: "Dra Marcela Brasil - Atendimento" },
+    { src: "/hero3.webp", alt: "Dra Marcela Brasil - Consultório" },
+    { src: "/hero4.webp", alt: "Dra Marcela Brasil - Close up" }, 
   ];
 
   return (
