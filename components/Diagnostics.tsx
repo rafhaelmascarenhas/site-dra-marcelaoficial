@@ -81,7 +81,7 @@ export const Diagnostics: React.FC = () => {
   );
 
   return (
-    <section id="diagnostico" className="pt-20 pb-12 md:py-20 px-6 relative bg-white">
+    <section id="diagnostico" className="pt-20 pb-12 md:py-20 px-6 relative bg-transparent">
       <div className="container mx-auto max-w-6xl relative z-10">
         
         {/* Header */}

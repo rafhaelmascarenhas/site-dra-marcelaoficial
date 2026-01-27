@@ -4,7 +4,7 @@ import { Component as LuxuryButton } from './ui/button';
 
 export const Bio: React.FC = () => {
   return (
-    <section id="bio" className="pt-12 pb-20 md:py-24 px-6 bg-[#FAFAFA] border-t border-gray-100">
+    <section id="bio" className="pt-12 pb-20 md:py-24 px-6 bg-transparent border-t border-[#D4AF37]/10">
       <div className="container mx-auto max-w-6xl">
         
         <div className="grid md:grid-cols-12 gap-12 items-center relative z-10">
@@ -13,7 +13,7 @@ export const Bio: React.FC = () => {
             <div className="md:col-span-5 relative">
                 <div className="relative rounded-[2.5rem] overflow-hidden aspect-[3/4] shadow-2xl group-hover:scale-[1.02] transition-transform duration-700">
                     <img 
-                        src="bio1.webp" 
+                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" 
                         alt="Dra. Marcela Brasil" 
                         className="w-full h-full object-cover filter contrast-[1.05]"
                     />

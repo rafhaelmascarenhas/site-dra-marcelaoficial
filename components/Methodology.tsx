@@ -4,7 +4,7 @@ import { ArrowRight } from 'lucide-react';
 
 export const Methodology: React.FC = () => {
   return (
-    <section id="metodologia" className="py-12 md:py-20 px-6 relative bg-white">
+    <section id="metodologia" className="py-12 md:py-20 px-6 relative bg-transparent">
       <div className="container mx-auto max-w-6xl">
         
         {/* Header Standardized */}

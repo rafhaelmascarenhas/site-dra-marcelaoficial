@@ -5,10 +5,10 @@ import { StatsCarousel } from './StatsCarousel';
 
 export const Authority: React.FC = () => {
   return (
-    <section id="depoimentos" className="pt-0 pb-0 bg-white overflow-hidden relative">
+    <section id="depoimentos" className="pt-0 pb-0 bg-transparent overflow-hidden relative">
       
       {/* 1. Full Width Stats Carousel */}
-      <div className="mb-12 md:mb-20 relative z-10">
+      <div className="mb-12 md:mb-16 relative z-10">
          <StatsCarousel />
       </div>
 
@@ -16,8 +16,8 @@ export const Authority: React.FC = () => {
         
         {/* Animated Testimonials Section */}
         <div className="relative">
-             {/* HEADER */}
-             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-4 mb-8 md:mb-12">
+             {/* HEADER - Reduced margin-bottom from mb-12 to mb-6 for tighter layout */}
+             <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 px-4 mb-6">
                 <div>
                     <h2 className="font-sans font-extrabold text-3xl md:text-4xl text-black tracking-tighter mb-2">Resultados Reais</h2>
                     <p className="text-gray-500 font-medium text-base md:text-lg">Histórias de quem transformou sua biologia.</p>
@@ -28,7 +28,7 @@ export const Authority: React.FC = () => {
                 </div>
             </div>
 
-            {/* Testimonials - Removed bottom padding to glue with next section */}
+            {/* Testimonials */}
             <AnimatedTestimonials 
                 testimonials={TESTIMONIALS} 
                 autoplay={true} 

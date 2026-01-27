@@ -1,7 +1,10 @@
 import React from 'react';
-import { ArrowRight, FileText } from 'lucide-react';
+import { motion } from "framer-motion";
+import { ArrowRight, FileText, Circle } from 'lucide-react';
 import { Component as LuxuryButton } from './ui/button';
 import { FeatureCarousel } from './ui/feature-carousel';
+import { AuroraBackground } from './ui/aurora-background';
+import { cn } from '../lib/utils';
 
 export const Hero: React.FC = () => {
   
@@ -13,49 +16,84 @@ export const Hero: React.FC = () => {
     }
   };
 
-  // Images for the carousel - Local images from public folder
+  // Images for the carousel
   const carouselImages = [
-    { src: "/hero1.webp", alt: "Dra Marcela Brasil - Principal" },
-    { src: "/hero2.webp", alt: "Dra Marcela Brasil - Atendimento" },
-    { src: "/hero3.webp", alt: "Dra Marcela Brasil - Consultório" },
-    { src: "/hero4.webp", alt: "Dra Marcela Brasil - Close up" }, 
+    { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Portrait" },
+    { src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Clinic" },
+    { src: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Consultation" },
+    { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Close up" },
   ];
 
-  return (
-    <section className="relative min-h-screen pt-36 pb-20 px-4 overflow-hidden flex flex-col items-center justify-center">
-      
-      {/* IMPROVED BACKGROUND: Cleaner, Subtle gradients */}
-      <div className="absolute inset-0 pointer-events-none -z-10 bg-[#FFFFFF]">
-         {/* Top Right Gold/Taupe Glow */}
-         <div className="absolute top-[-10%] right-[-5%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(212,175,55,0.08),rgba(255,255,255,0))] blur-3xl"></div>
-         {/* Bottom Left Soft Gray/Blue Glow */}
-         <div className="absolute bottom-[-10%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[radial-gradient(circle_farthest-side,rgba(151,124,113,0.1),rgba(255,255,255,0))] blur-3xl"></div>
-         {/* Center Highlights */}
-         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[linear-gradient(to_bottom,rgba(255,255,255,0)_0%,rgba(255,255,255,0.8)_100%)]"></div>
-      </div>
+  // Animation Variants
+  const fadeUpVariants = {
+      hidden: { opacity: 0, y: 30 },
+      visible: (i: number) => ({
+          opacity: 1,
+          y: 0,
+          transition: {
+              duration: 1,
+              delay: 0.5 + i * 0.2,
+              ease: [0.25, 0.4, 0.25, 1],
+          },
+      }),
+  };
 
-      <div className="container mx-auto max-w-6xl relative z-10 flex flex-col items-center text-center space-y-12">
+  return (
+    <AuroraBackground className="min-h-screen pt-32 pb-20 overflow-hidden">
+      
+      <div className="container mx-auto max-w-6xl relative z-10 flex flex-col items-center text-center space-y-10 px-4">
         
         {/* Text Content */}
-        <div className="max-w-4xl mx-auto space-y-8">
-            {/* Badge */}
-            <div className="animate-fade-in-up inline-flex items-center gap-2 px-6 py-2 rounded-full bg-[#F4EDE5] border border-[#D4AF37]/30 shadow-sm">
-                <span className="flex h-1.5 w-1.5 rounded-full bg-[#977C71]"></span>
-                <span className="text-[11px] font-bold tracking-widest text-[#977C71] uppercase">Medicina de Precisão</span>
-            </div>
+        <div className="max-w-4xl mx-auto">
             
-            {/* Headlines */}
-            <h1 className="animate-fade-in-up delay-100 font-sans font-extrabold text-5xl sm:text-6xl md:text-8xl text-black tracking-tighter leading-[1.05]">
-                Não adivinhamos,<br/> 
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#977C71] to-[#D4AF37] opacity-100">nós mapeamos.</span>
-            </h1>
+            {/* Badge - Real Liquid Glass (Lower opacity, subtle border) */}
+            <motion.div
+                custom={0}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-8 hover:bg-white/20 transition-colors"
+            >
+                <Circle className="h-2 w-2 fill-[#977C71]" />
+                <span className="text-xs md:text-sm text-[#977C71] tracking-widest uppercase font-bold drop-shadow-sm">
+                    Medicina de Precisão
+                </span>
+            </motion.div>
             
-            <p className="animate-fade-in-up delay-200 font-medium text-lg sm:text-xl text-gray-500 max-w-2xl mx-auto leading-relaxed">
-                Uma abordagem clínica baseada 100% em dados genéticos para garantir longevidade, estética e alta performance.
-            </p>
+            {/* Headlines - Solid Colors */}
+            <motion.div
+                custom={1}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <h1 className="text-4xl sm:text-6xl md:text-8xl font-sans font-extrabold mb-6 tracking-tight leading-[1.05]">
+                    <span className="block text-[#1A1A1A]">Não adivinhamos,</span>
+                    <span className="block text-[#977C71]">
+                        nós mapeamos.
+                    </span>
+                </h1>
+            </motion.div>
+            
+            <motion.div
+                custom={2}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+            >
+                <p className="text-base sm:text-lg md:text-xl text-gray-800 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+                    Uma abordagem clínica baseada 100% em dados genéticos para garantir longevidade, estética e alta performance.
+                </p>
+            </motion.div>
 
-            {/* Buttons - Mobile Fixed Widths */}
-            <div className="animate-fade-in-up delay-300 flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0">
+            {/* Buttons */}
+            <motion.div
+                custom={3}
+                variants={fadeUpVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
+            >
                 <div className="w-full sm:w-auto" onClick={(e) => scrollToSection(e, 'diagnostico')}>
                     <LuxuryButton 
                         variant="primary"
@@ -71,20 +109,26 @@ export const Hero: React.FC = () => {
                         variant="outline"
                         icon={<FileText />}
                         fullWidth
-                        className="w-full sm:w-auto min-w-[240px]"
+                        className="w-full sm:w-auto min-w-[240px] bg-white/60 hover:bg-[#D4AF37] border-[#977C71]/30 text-[#977C71] hover:text-white"
                     >
                         Entenda o Método
                     </LuxuryButton>
                 </div>
-            </div>
+            </motion.div>
         </div>
 
         {/* 3D CAROUSEL SECTION */}
-        <div className="w-full animate-fade-in-up delay-500 mt-8">
+        <motion.div 
+            custom={4}
+            variants={fadeUpVariants}
+            initial="hidden"
+            animate="visible"
+            className="w-full mt-8"
+        >
              <FeatureCarousel images={carouselImages} />
-        </div>
+        </motion.div>
 
       </div>
-    </section>
+    </AuroraBackground>
   );
 };

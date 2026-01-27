@@ -46,9 +46,11 @@ export const Component: React.FC<ButtonProps> = ({
       shadow-[0_4px_14px_0_rgba(151,124,113,0.39)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]
     `,
     
-    // Outline: Starts with #977C71 (Taupe) tint, Hovers to #D4AF37 (Gold)
+    // Outline: RESTORED GOLD HOVER
+    // Uses semi-transparent white background for legibility, but lights up GOLD on hover
     outline: `
-      bg-[#977C71]/10 text-[#977C71] border border-[#977C71]/30
+      bg-white/40 backdrop-blur-sm
+      text-[#977C71] border border-[#977C71]/40
       hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-white
       hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)]
     `,

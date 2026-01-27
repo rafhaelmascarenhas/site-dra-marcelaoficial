@@ -44,7 +44,7 @@ const STATS_DATA: StatItem[] = [
 
 export const StatsCarousel = () => {
   return (
-    <div className="w-full py-12 bg-[#FBF9F7] border-y border-[#D4AF37]/10 relative overflow-hidden">
+    <div className="w-full py-12 bg-white/40 backdrop-blur-md border-y border-[#D4AF37]/10 relative overflow-hidden">
         {/* Gradients for fade effect on edges */}
         <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#FBF9F7] to-transparent z-10"></div>
         <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#FBF9F7] to-transparent z-10"></div>

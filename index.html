@@ -15,15 +15,15 @@
           extend: {
             colors: {
               brand: {
-                bg: '#FFFFFF', /* Pure White base */
+                bg: '#F9F8F6', /* Warm Off-White (Luxury Base) */
                 text: '#1A1A1A', /* Soft Black */
                 cta: '#977C71', /* Taupe - Signature Color */
                 ctaHover: '#7D655C',
                 detail: '#888888', /* Neutral Gray */
                 highlight: '#000000', /* Pure Black */
-                surface: '#F9F9F9', /* Very Light Gray */
+                surface: '#FFFFFF', /* Pure White for cards */
                 glass: 'rgba(255, 255, 255, 0.7)',
-                gold: '#D4AF37', /* Re-added Luxury Gold */
+                gold: '#D4AF37', /* Luxury Gold */
               }
             },
             fontFamily: {
@@ -43,7 +43,9 @@
             animation: {
               'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
               'float': 'float 6s ease-in-out infinite',
-              aurora: "aurora 60s linear infinite",
+              'shimmer': 'shimmer 2s infinite',
+              'pulse-slow': 'pulseSlow 8s infinite',
+              'aurora': 'aurora 60s linear infinite', /* Slowed down for better performance */
             },
             keyframes: {
               fadeInUp: {
@@ -53,6 +55,13 @@
               float: {
                 '0%, 100%': { transform: 'translateY(0)' },
                 '50%': { transform: 'translateY(-10px)' },
+              },
+              shimmer: {
+                '100%': { transform: 'translateX(100%)' },
+              },
+              pulseSlow: {
+                '0%, 100%': { opacity: '0.05' },
+                '50%': { opacity: '0.08' },
               },
               aurora: {
                 from: {
@@ -69,24 +78,58 @@
     </script>
     <style>
       body {
-        background-color: #FFFFFF;
+        /* Base color fallback */
+        background-color: #F9F8F6;
         color: #1A1A1A;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* CSS Variables for Aurora Background (Medical Luxury Theme) */
+      :root {
+        --white: #ffffff;
+        --black: #000000;
+        --transparent: transparent;
+        
+        /* UPDATED: Creamier White for Aurora Base to avoid washout */
+        --aurora-white: #F3E9D9; /* Warm Cream/Beige */
+
+        /* UPDATED: PURE GOLD PALETTE (Removing all cool tones) */
+        /* Using strong yellows and oranges to interact with mix-blend-mode correctly */
+        --aurora-1: #D4AF37; /* Pure Gold */
+        --aurora-2: #E5C25D; /* Light Gold */
+        --aurora-3: #C5A028; /* Deep Gold */
+        --aurora-4: #F4E4BC; /* Champagne/Cream */
       }
       
-      /* Subtle Noise - Reduced Opacity for Clean Look */
-      body::before {
-        content: "";
+      /* RICH BACKGROUND SYSTEM (Fixed) */
+      #luxury-bg {
         position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: -50;
+        pointer-events: none;
+        background-color: #F9F8F6;
+        overflow: hidden;
+        /* Optimization: GPU Acceleration */
+        transform: translateZ(0); 
+        will-change: transform; 
+      }
+
+      /* 1. Paper Grain Texture - Optimized opacity */
+      #luxury-bg::before {
+        content: "";
+        position: absolute;
         top: 0;
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.015'/%3E%3C/svg%3E");
-        pointer-events: none;
-        z-index: 9999;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+        opacity: 0.4; /* Reduced slightly for performance */
         mix-blend-mode: multiply;
       }
 
@@ -95,27 +138,14 @@
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #FFFFFF;
+        background: #F9F8F6;
       }
       ::-webkit-scrollbar-thumb {
-        background: #CCCCCC;
+        background: #D4d4d4;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
         background: #977C71;
-      }
-
-      /* Aurora Background Variables - Strictly Neutral */
-      :root {
-        --white: #ffffff;
-        --black: #000000;
-        --transparent: transparent;
-        
-        /* Neutral palette for aurora */
-        --aurora-1: #EBEBEB; /* Light Gray */
-        --aurora-2: #F5F5F5; /* White Smoke */
-        --aurora-3: #DCDCDC; /* Gainsboro */
-        --aurora-4: #FFFFFF; /* White */
       }
     </style>
   <script type="importmap">
@@ -137,6 +167,10 @@
 <link rel="stylesheet" href="/index.css">
 </head>
   <body>
+    <div id="luxury-bg">
+        <!-- Grid overlay moved to CSS only for cleanliness -->
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(circle at center, black 40%, transparent 100%);"></div>
+    </div>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>
 </body>

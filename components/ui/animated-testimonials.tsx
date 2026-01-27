@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { cn } from "../../lib/utils";
 
 type Testimonial = {
@@ -33,22 +33,31 @@ export const AnimatedTestimonials = ({
     return index === active;
   };
 
+  // Logic to handle drag end
+  const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
+    if (info.offset.x > 50) {
+      handlePrev();
+    } else if (info.offset.x < -50) {
+      handleNext();
+    }
+  };
+
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 5000);
+      const interval = setInterval(handleNext, 8000); // Increased duration slightly for better readability
       return () => clearInterval(interval);
     }
-  }, [autoplay]);
+  }, [autoplay, active]); // Added active dependency to reset timer on manual interaction
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
 
   return (
-    <div className={cn("max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-20", className)}>
+    <div className={cn("max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-10 md:py-20", className)}>
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
         <div>
-          <div className="relative h-80 w-full">
+          <div className="relative h-80 w-full cursor-grab active:cursor-grabbing">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -79,13 +88,17 @@ export const AnimatedTestimonials = ({
                     duration: 0.4,
                     ease: "easeInOut",
                   }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  dragElastic={0.2}
+                  onDragEnd={onDragEnd}
                   className="absolute inset-0 origin-bottom"
                 >
                   <img
                     src={testimonial.src}
                     alt={testimonial.name}
                     draggable={false}
-                    className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white"
+                    className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white pointer-events-none"
                   />
                 </motion.div>
               ))}
