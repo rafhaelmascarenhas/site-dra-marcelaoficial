@@ -13,7 +13,7 @@ export const Bio: React.FC = () => {
             <div className="md:col-span-5 relative">
                 <div className="relative rounded-[2.5rem] overflow-hidden aspect-[3/4] shadow-2xl group-hover:scale-[1.02] transition-transform duration-700">
                     <img 
-                        src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop" 
+                        src="bio1.webp" 
                         alt="Dra. Marcela Brasil" 
                         className="w-full h-full object-cover filter contrast-[1.05]"
                     />

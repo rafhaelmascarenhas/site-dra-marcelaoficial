@@ -18,10 +18,10 @@ export const Hero: React.FC = () => {
 
   // Images for the carousel
   const carouselImages = [
-    { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Portrait" },
-    { src: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Clinic" },
-    { src: "https://images.unsplash.com/photo-1594824476967-48c8b964273f?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Consultation" },
-    { src: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=1000&auto=format&fit=crop", alt: "Dra Marcela Brasil - Close up" },
+    { src: "hero1.webp", alt: "Dra Marcela Brasil - Portrait" },
+    { src: "hero2.webp", alt: "Dra Marcela Brasil - Clinic" },
+    { src: "hero3.webp", alt: "Dra Marcela Brasil - Consultation" },
+    { src: "hero4.webp", alt: "Dra Marcela Brasil - Close up" },
   ];
 
   // Animation Variants
