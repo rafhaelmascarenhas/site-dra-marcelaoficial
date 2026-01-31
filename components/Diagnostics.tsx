@@ -18,7 +18,7 @@ export const Diagnostics: React.FC = () => {
         <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, margin: "0px" }}
             transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             className={cn(
             "group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full transition-all duration-500",
