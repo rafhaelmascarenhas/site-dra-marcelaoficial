@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { DIAGNOSTICS_DATA } from '../constants';
 import { ScanLine, Calendar, Check } from 'lucide-react'; 
 import { Component as LuxuryButton } from './ui/button';
@@ -9,12 +10,17 @@ export const Diagnostics: React.FC = () => {
   const geneticsData = DIAGNOSTICS_DATA[1];
 
   // Shared Card Component
-  const DiagnosticCard = ({ data }: { data: typeof DIAGNOSTICS_DATA[0] }) => {
+  const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], index: number }) => {
     // Logic: If no image is provided, render the "Genetics" style card (Liquid Black Glass)
     const isGeneticsCard = !data.image;
 
     return (
-        <div className={cn(
+        <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+            className={cn(
             "group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full transition-all duration-500",
             isGeneticsCard 
                 // LIQUID GLASS BLACK: Deep black/zinc background, very subtle border, shadow
@@ -122,7 +128,7 @@ export const Diagnostics: React.FC = () => {
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
   };
 
@@ -160,8 +166,8 @@ export const Diagnostics: React.FC = () => {
 
         {/* Content Grid */}
         <div className="grid md:grid-cols-2 gap-6 mb-8 md:mb-12">
-          <DiagnosticCard data={epigeneticsData} />
-          <DiagnosticCard data={geneticsData} />
+          <DiagnosticCard data={epigeneticsData} index={0} />
+          <DiagnosticCard data={geneticsData} index={1} />
         </div>
         
         {/* Mobile Button */}
