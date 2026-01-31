@@ -21,14 +21,14 @@ export const Navbar: React.FC = () => {
         <div className={`
             pointer-events-auto
             flex items-center justify-between
-            /* LIQUID GLASS EFFECT: Very Low Opacity (40%) + High Blur */
-            bg-white/40 backdrop-blur-xl
-            border border-white/40
-            shadow-sm shadow-black/5
+            /* LIQUID GLASS - Adjusted for Dark Theme */
+            bg-[#977C71]/30 backdrop-blur-xl
+            border border-white/20
+            shadow-lg shadow-black/10
             rounded-full
             transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
             ${isScrolled 
-                ? 'w-[95%] max-w-6xl py-2 px-6 shadow-md' 
+                ? 'w-[95%] max-w-6xl py-2 px-6 shadow-xl' 
                 : 'w-[98%] max-w-7xl py-3 px-8'
             }
         `}>
@@ -36,7 +36,7 @@ export const Navbar: React.FC = () => {
           {/* Logo */}
           <a href="#" className="flex-shrink-0 flex items-center group relative z-10 mr-4">
             <span className={`
-                font-sans font-extrabold tracking-tight text-[#1A1A1A] transition-all duration-300 whitespace-nowrap
+                font-sans font-extrabold tracking-tight text-white transition-all duration-300 whitespace-nowrap
                 ${isScrolled ? 'text-base md:text-lg' : 'text-lg md:text-xl'}
             `}>
               Dra. Marcela Brasil
@@ -50,7 +50,7 @@ export const Navbar: React.FC = () => {
                 <a 
                     key={link.label}
                     href={link.href} 
-                    className="px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest text-gray-700 hover:text-[#977C71] hover:bg-white/40 transition-all duration-300 relative group"
+                    className="px-4 py-2 rounded-full text-[11px] font-bold uppercase tracking-widest text-white/80 hover:text-white hover:bg-white/10 transition-all duration-300 relative group"
                 >
                     {link.label}
                 </a>
@@ -62,7 +62,7 @@ export const Navbar: React.FC = () => {
           <div className="hidden md:flex flex-shrink-0 items-center justify-end relative z-10 ml-4">
             <a href="#contato">
                 <button className={`
-                    bg-[#977C71] text-white rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] transition-all shadow-md
+                    bg-[#F9F8F6] text-[#977C71] rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all shadow-md
                     ${isScrolled ? 'px-6 py-2.5 text-[10px]' : 'px-7 py-3 text-xs'}
                 `}>
                     Agendar
@@ -72,7 +72,7 @@ export const Navbar: React.FC = () => {
 
           {/* Mobile Toggle */}
           <button 
-            className="md:hidden p-2 rounded-full bg-white/50 border border-white/40 text-black hover:bg-white/80 transition-colors relative z-10 backdrop-blur-md" 
+            className="md:hidden p-2 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors relative z-10 backdrop-blur-md" 
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={20} /> : <Menu size={20} />}
@@ -82,14 +82,14 @@ export const Navbar: React.FC = () => {
 
       {/* Mobile Menu Overlay */}
       {isOpen && (
-        <div className="fixed inset-0 z-40 bg-[#F9F8F6]/95 backdrop-blur-3xl md:hidden flex flex-col pt-32 px-8 animate-fade-in">
+        <div className="fixed inset-0 z-40 bg-[#977C71]/95 backdrop-blur-3xl md:hidden flex flex-col pt-32 px-8 animate-fade-in">
            
           <div className="space-y-6 flex flex-col items-center text-center">
             {NAV_LINKS.map((link) => (
               <a 
                 key={link.label}
                 href={link.href} 
-                className="text-2xl font-sans font-bold text-[#1A1A1A] tracking-tight hover:text-[#D4AF37] transition-colors"
+                className="text-2xl font-sans font-bold text-white tracking-tight hover:text-[#D4AF37] transition-colors"
                 onClick={() => setIsOpen(false)}
               >
                 {link.label}
@@ -114,7 +114,7 @@ export const Navbar: React.FC = () => {
 
 export const Footer: React.FC = () => {
   return (
-    <footer id="contato" className="bg-[#1A1A1A] text-white py-12 md:py-20 px-6 border-t border-[#D4AF37]/20">
+    <footer id="contato" className="bg-[#1A1A1A] text-white py-12 md:py-20 px-6 border-t border-white/10">
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">

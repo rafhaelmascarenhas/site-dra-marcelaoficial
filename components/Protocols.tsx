@@ -14,25 +14,29 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
     <motion.div 
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }} // Triggers slightly before element is fully in view
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.7, delay: index * 0.1, ease: [0.21, 0.47, 0.32, 0.98] }}
       className={`
         relative group overflow-hidden rounded-[2.5rem] h-[480px]
         ${protocol.colSpan}
-        bg-white border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500
+        /* GLASS EFFECT ON TAUPE BG */
+        bg-white/5 backdrop-blur-md border border-white/10
+        shadow-[0_4px_20px_rgb(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.2)] 
+        transition-all duration-500
       `}
     >
-      {/* Background Image */}
-      <div className="absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:scale-105">
+      {/* Background Image - Subtle Integration */}
+      <div className="absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:scale-105 opacity-80 group-hover:opacity-100">
         <img 
           src={protocol.image} 
           alt={protocol.title} 
           className="w-full h-full object-cover transition-all duration-700 
-            filter sepia-[0.15] brightness-[0.9] contrast-[0.95] saturate-[0.8] 
-            group-hover:sepia-0 group-hover:brightness-100 group-hover:contrast-100 group-hover:saturate-100"
+            filter grayscale-[0.2] contrast-[1.1]
+            group-hover:grayscale-0"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent opacity-80 group-hover:opacity-70 transition-opacity duration-500"></div>
+        {/* Darker gradient for text readability */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#977C71]/95 via-black/20 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
       </div>
       
       {/* Content Container */}
@@ -64,7 +68,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
             </h3>
             
             <div className="overflow-hidden max-h-0 group-hover:max-h-24 transition-all duration-500 ease-in-out">
-                <p className="text-gray-200 font-medium leading-relaxed max-w-lg pb-2">
+                <p className="text-gray-100 font-medium leading-relaxed max-w-lg pb-2">
                     {protocol.description}
                 </p>
             </div>
@@ -77,7 +81,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
 
 export const Protocols: React.FC = () => {
   return (
-    <section id="protocolos" className="py-12 md:py-20 px-6 bg-transparent text-black relative">
+    <section id="protocolos" className="py-12 md:py-20 px-6 bg-transparent text-white relative">
       
       <div className="container mx-auto max-w-6xl relative z-10">
         
@@ -86,12 +90,12 @@ export const Protocols: React.FC = () => {
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="h-px w-8 bg-[#D4AF37]"></div>
-                    <span className="text-[#977C71] font-bold tracking-widest text-xs uppercase">Nossas Soluções</span>
+                    <span className="text-[#F9F8F6] font-bold tracking-widest text-xs uppercase">Nossas Soluções</span>
                 </div>
-                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-black tracking-tighter leading-none mb-6">
+                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-white tracking-tighter leading-none mb-6">
                   Protocolos Exclusivos.
                 </h2>
-                <p className="text-gray-500 text-lg font-medium max-w-lg">
+                <p className="text-gray-200 text-lg font-medium max-w-lg">
                   A união entre medicina diagnóstica e terapias de alta performance.
                 </p>
             </div>

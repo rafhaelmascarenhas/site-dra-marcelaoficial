@@ -1,84 +1,130 @@
 import React from 'react';
 import { DIAGNOSTICS_DATA } from '../constants';
-import { ScanLine, Calendar } from 'lucide-react';
+import { ScanLine, Calendar, Check } from 'lucide-react'; 
 import { Component as LuxuryButton } from './ui/button';
+import { cn } from '../lib/utils';
 
 export const Diagnostics: React.FC = () => {
   const epigeneticsData = DIAGNOSTICS_DATA[0];
   const geneticsData = DIAGNOSTICS_DATA[1];
 
-  // Shared Card Component - Liquid Glass Dark Edition
-  const DiagnosticCard = ({ data }: { data: typeof DIAGNOSTICS_DATA[0] }) => (
-    <div className="group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full shadow-2xl transition-all duration-500 hover:shadow-[0_20px_60px_rgba(0,0,0,0.2)] border border-white/10 bg-[#0a0a0a]">
-        
-        {/* Background Image */}
-        <div className="absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:scale-105">
-            <img 
-                src={data.image} 
-                alt={data.title} 
-                className="w-full h-full object-cover transition-all duration-700 
-                filter brightness-[0.8] contrast-[1.1]
-                group-hover:brightness-100"
-            />
-        </div>
+  // Shared Card Component
+  const DiagnosticCard = ({ data }: { data: typeof DIAGNOSTICS_DATA[0] }) => {
+    // Logic: If no image is provided, render the "Genetics" style card (Liquid Black Glass)
+    const isGeneticsCard = !data.image;
 
-        {/* LIQUID GLASS OVERLAY - Dark & Sophisticated */}
-        {/* 1. Base Gradient for Text Contrast */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 transition-all duration-500"></div>
-        
-        {/* 2. The Liquid Glass Sheen (Subtle Tint + Blur) */}
-        <div className="absolute inset-0 bg-[#0a0a0a]/10 backdrop-blur-[1px] group-hover:backdrop-blur-none transition-all duration-700"></div>
-        
-        {/* 3. Surface Highlight (Top Right Reflection) */}
-        <div className="absolute -top-40 -right-40 w-80 h-80 bg-white/5 blur-[80px] rounded-full pointer-events-none group-hover:bg-[#D4AF37]/10 transition-colors duration-700"></div>
-
-        {/* 4. Glass Border Inner Ring */}
-        <div className="absolute inset-0 border border-white/10 rounded-[2.5rem] pointer-events-none"></div>
-
-        {/* Content Container */}
-        <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10">
+    return (
+        <div className={cn(
+            "group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full transition-all duration-500",
+            isGeneticsCard 
+                // LIQUID GLASS BLACK: Deep black/zinc background, very subtle border, shadow
+                ? "bg-[#09090b] border border-white/5 hover:border-[#D4AF37]/30 hover:shadow-2xl hover:shadow-black/50" 
+                // STANDARD CARD:
+                : "bg-[#0a0a0a] border border-white/10 shadow-2xl"
+        )}>
             
-            {/* Top: Icon & Action Icon */}
-            <div className="flex justify-between items-start">
-                {/* Icon Container - Frosted Glass Pill */}
-                <div className="w-16 h-16 rounded-full bg-white/10 backdrop-blur-xl border border-white/20 flex items-center justify-center text-white shadow-lg group-hover:bg-[#D4AF37] group-hover:text-black group-hover:border-[#D4AF37] transition-all duration-500 transform group-hover:scale-110">
-                    <data.icon size={28} strokeWidth={1.5} />
+            {/* 1. BACKGROUND IMAGE (For Epigenetics) */}
+            {!isGeneticsCard && (
+                <div className="absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:scale-105">
+                    <img 
+                        src={data.image} 
+                        alt={data.title} 
+                        className="w-full h-full object-cover transition-all duration-700 
+                        filter brightness-[0.8] contrast-[1.1]
+                        group-hover:brightness-100"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/50 to-transparent opacity-90 transition-all duration-500"></div>
                 </div>
+            )}
+
+            {/* 2. LIQUID GLASS EFFECT (For Genetics) */}
+            {isGeneticsCard && (
+                <>
+                    {/* Glossy Reflection - Sharp Gradient from top */}
+                    <div className="absolute inset-x-0 top-0 h-[250px] bg-gradient-to-b from-white/10 to-transparent pointer-events-none opacity-60"></div>
+                    
+                    {/* Bottom Glow - Subtle Gold */}
+                    <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-[#D4AF37]/5 blur-[100px] rounded-full pointer-events-none"></div>
+                    
+                    {/* No noise/grain (removed 'esfumaçado') for pure glass look */}
+                </>
+            )}
+
+            {/* Content Container */}
+            <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10">
                 
-                {/* ScanLine for semantic meaning */}
-                <div className="w-12 h-12 rounded-full bg-white/5 backdrop-blur-md border border-white/10 text-white flex items-center justify-center group-hover:bg-white group-hover:text-black transition-all duration-500">
-                    <ScanLine size={20} />
+                {/* Header */}
+                <div className="flex justify-between items-start w-full">
+                    {/* Label */}
+                    <div className={cn(
+                        "inline-block px-3 py-1 rounded-full backdrop-blur-md border",
+                        isGeneticsCard 
+                            ? "bg-transparent border-white/20 text-gray-400"
+                            : "bg-[#D4AF37]/20 border-[#D4AF37]/30 text-[#D4AF37]"
+                    )}>
+                        <span className="text-[10px] font-bold uppercase tracking-widest">
+                            {data.title.includes('DNA') ? 'GENÉTICA' : 'EPIGENÉTICA'}
+                        </span>
+                    </div>
+
+                    {/* Icon */}
+                    <div className={cn(
+                        "w-12 h-12 rounded-full flex items-center justify-center transition-all duration-500",
+                        isGeneticsCard 
+                            // Genetics Icon: Minimalist, no heavy background
+                            ? "border border-white/10 text-[#D4AF37] group-hover:text-white group-hover:border-[#D4AF37]" 
+                            : "bg-white/10 backdrop-blur-xl border border-white/20 text-white group-hover:bg-[#D4AF37] group-hover:text-black"
+                    )}>
+                        <data.icon size={22} strokeWidth={1.5} />
+                    </div>
                 </div>
-            </div>
 
-            {/* Bottom: Text Content */}
-            <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                <div className="inline-block px-3 py-1 rounded-full bg-[#D4AF37]/20 border border-[#D4AF37]/30 backdrop-blur-md mb-4">
-                    <span className="text-[#D4AF37] text-xs font-bold uppercase tracking-widest">{data.title.includes('DNA') ? 'Genética' : 'Epigenética'}</span>
-                </div>
+                {/* Body Content */}
+                <div className="mt-auto">
+                    <h3 className="font-sans font-extrabold text-3xl md:text-4xl text-white tracking-tight mb-3 leading-[1.1]">
+                        {data.title.split('(')[0]} 
+                        {isGeneticsCard && <span className="text-[#D4AF37]"> DNA</span>}
+                    </h3>
+                    
+                    {!isGeneticsCard && (
+                         <span className="text-xl font-light italic text-gray-300 block mb-4">
+                             {data.title.split('(')[1]?.replace(')', '') || ''}
+                         </span>
+                    )}
 
-                <h3 className="font-sans font-extrabold text-3xl md:text-4xl text-white tracking-tight mb-3 leading-none drop-shadow-xl">
-                    {data.title.split('(')[0]} <br/>
-                    <span className="text-gray-300 text-2xl font-light italic">{data.title.split('(')[1]?.replace(')', '') || ''}</span>
-                </h3>
-                
-                <p className="text-gray-300 text-base md:text-lg font-medium leading-relaxed mb-6 max-w-sm drop-shadow-md border-l-2 border-[#D4AF37] pl-4">
-                    {data.description}
-                </p>
+                    <p className={cn(
+                        "text-base font-medium leading-relaxed mb-8 max-w-sm",
+                        isGeneticsCard ? "text-gray-400" : "text-gray-300 border-l-2 border-[#D4AF37] pl-4"
+                    )}>
+                        {data.description}
+                    </p>
 
-                {/* Details List */}
-                <div className="space-y-2 pt-2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">
-                    {data.details.map((item, i) => (
-                        <div key={i} className="flex items-center gap-3">
-                            <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]"></div>
-                            <span className="text-white/90 font-medium text-xs md:text-sm tracking-wide">{item}</span>
-                        </div>
-                    ))}
+                    {/* Check List - Styled like the reference print */}
+                    <div className="space-y-4">
+                        {data.details.map((item, i) => (
+                            <div key={i} className="flex items-center gap-3 group/item">
+                                {isGeneticsCard ? (
+                                    // Checkmark inside circle styling
+                                    <div className="flex-shrink-0 w-5 h-5 rounded-full border border-[#D4AF37]/50 flex items-center justify-center group-hover/item:bg-[#D4AF37] transition-all">
+                                        <Check size={10} className="text-[#D4AF37] group-hover/item:text-black" />
+                                    </div>
+                                ) : (
+                                    <div className="w-1.5 h-1.5 rounded-full bg-[#D4AF37] shadow-[0_0_10px_#D4AF37]"></div>
+                                )}
+                                <span className={cn(
+                                    "font-medium text-sm tracking-wide transition-colors",
+                                    isGeneticsCard ? "text-gray-300 group-hover/item:text-white" : "text-white/90"
+                                )}>
+                                    {item}
+                                </span>
+                            </div>
+                        ))}
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <section id="diagnostico" className="pt-20 pb-12 md:py-20 px-6 relative bg-transparent">
@@ -89,12 +135,12 @@ export const Diagnostics: React.FC = () => {
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="h-px w-8 bg-[#D4AF37]"></div>
-                    <span className="text-[#977C71] font-bold tracking-widest text-xs uppercase">Diagnóstico de Precisão</span>
+                    <span className="text-[#F9F8F6] font-bold tracking-widest text-xs uppercase">Diagnóstico de Precisão</span>
                 </div>
-                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-black tracking-tighter leading-none mb-4">
+                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-white tracking-tighter leading-none mb-4">
                   O Fim da Tentativa e Erro.
                 </h2>
-                <p className="text-gray-500 text-lg font-medium max-w-lg">
+                <p className="text-gray-200 text-lg font-medium max-w-lg">
                   Não tratamos sintomas genéricos. Mapeamos sua biologia única.
                 </p>
             </div>
@@ -118,7 +164,7 @@ export const Diagnostics: React.FC = () => {
           <DiagnosticCard data={geneticsData} />
         </div>
         
-        {/* Mobile Button - Reduced Margin Bottom */}
+        {/* Mobile Button */}
         <div className="md:hidden flex justify-center w-full mb-4">
              <a href="#contato" className="w-full">
                 <LuxuryButton 

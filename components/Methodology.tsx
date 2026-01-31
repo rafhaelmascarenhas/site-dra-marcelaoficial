@@ -12,12 +12,12 @@ export const Methodology: React.FC = () => {
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
                     <div className="h-px w-8 bg-[#D4AF37]"></div>
-                    <span className="text-[#977C71] font-bold tracking-widest text-xs uppercase">Jornada do Paciente</span>
+                    <span className="text-[#F9F8F6] font-bold tracking-widest text-xs uppercase">Jornada do Paciente</span>
                 </div>
-                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-black tracking-tighter mb-4">
+                <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-white tracking-tighter mb-4">
                     Metodologia Proprietária.
                 </h2>
-                <p className="font-medium text-gray-500 text-lg md:text-xl max-w-2xl">
+                <p className="font-medium text-gray-200 text-lg md:text-xl max-w-2xl">
                     Do diagnóstico à execução. Uma jornada clara, sem suposições.
                 </p>
             </div>
@@ -27,17 +27,17 @@ export const Methodology: React.FC = () => {
             {JOURNEY_STEPS.map((step, index) => (
               <div 
                 key={index} 
-                className="group relative h-[340px] rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.08)] transition-all duration-500"
+                className="group relative h-[340px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-[0_4px_20px_rgb(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.2)] transition-all duration-500"
               >
                  {/* Background Image */}
                  <img 
                     src={step.image} 
                     alt={step.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter grayscale-[20%] group-hover:grayscale-0 opacity-80"
                  />
                  
-                 {/* Overlay */}
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-90 transition-opacity duration-300"></div>
+                 {/* Overlay - Darker for readability */}
+                 <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-90 transition-opacity duration-300"></div>
 
                  {/* Content Wrapper */}
                  <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10">

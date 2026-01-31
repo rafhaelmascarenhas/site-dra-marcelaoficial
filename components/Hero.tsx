@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, FileText, Circle } from 'lucide-react';
 import { Component as LuxuryButton } from './ui/button';
 import { FeatureCarousel } from './ui/feature-carousel';
-import { AuroraBackground } from './ui/aurora-background';
+import { BackgroundPaths } from './ui/background-paths';
 import { cn } from '../lib/utils';
 
 export const Hero: React.FC = () => {
@@ -39,14 +39,14 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <AuroraBackground className="min-h-screen pt-32 pb-20 overflow-hidden">
+    <BackgroundPaths className="pt-32 pb-20">
       
       <div className="container mx-auto max-w-6xl relative z-10 flex flex-col items-center text-center space-y-10 px-4">
         
         {/* Text Content */}
         <div className="max-w-4xl mx-auto">
             
-            {/* Badge - Real Liquid Glass (Lower opacity, subtle border) */}
+            {/* Badge */}
             <motion.div
                 custom={0}
                 variants={fadeUpVariants}
@@ -54,13 +54,13 @@ export const Hero: React.FC = () => {
                 animate="visible"
                 className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-8 hover:bg-white/20 transition-colors"
             >
-                <Circle className="h-2 w-2 fill-[#977C71]" />
-                <span className="text-xs md:text-sm text-[#977C71] tracking-widest uppercase font-bold drop-shadow-sm">
+                <Circle className="h-2 w-2 fill-[#D4AF37]" />
+                <span className="text-xs md:text-sm text-[#F9F8F6] tracking-widest uppercase font-bold drop-shadow-sm">
                     Medicina de Precisão
                 </span>
             </motion.div>
             
-            {/* Headlines - Solid Colors */}
+            {/* Headlines */}
             <motion.div
                 custom={1}
                 variants={fadeUpVariants}
@@ -68,8 +68,8 @@ export const Hero: React.FC = () => {
                 animate="visible"
             >
                 <h1 className="text-4xl sm:text-6xl md:text-8xl font-sans font-extrabold mb-6 tracking-tight leading-[1.05]">
-                    <span className="block text-[#1A1A1A]">Não adivinhamos,</span>
-                    <span className="block text-[#977C71]">
+                    <span className="block text-white">Não adivinhamos,</span>
+                    <span className="block text-[#D4AF37] drop-shadow-md">
                         nós mapeamos.
                     </span>
                 </h1>
@@ -81,7 +81,7 @@ export const Hero: React.FC = () => {
                 initial="hidden"
                 animate="visible"
             >
-                <p className="text-base sm:text-lg md:text-xl text-gray-800 mb-10 leading-relaxed font-medium max-w-2xl mx-auto">
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-10 leading-relaxed font-medium max-w-2xl mx-auto drop-shadow-sm">
                     Uma abordagem clínica baseada 100% em dados genéticos para garantir longevidade, estética e alta performance.
                 </p>
             </motion.div>
@@ -109,7 +109,7 @@ export const Hero: React.FC = () => {
                         variant="outline"
                         icon={<FileText />}
                         fullWidth
-                        className="w-full sm:w-auto min-w-[240px] bg-white/60 hover:bg-[#D4AF37] border-[#977C71]/30 text-[#977C71] hover:text-white"
+                        className="w-full sm:w-auto min-w-[240px]"
                     >
                         Entenda o Método
                     </LuxuryButton>
@@ -129,6 +129,6 @@ export const Hero: React.FC = () => {
         </motion.div>
 
       </div>
-    </AuroraBackground>
+    </BackgroundPaths>
   );
 };

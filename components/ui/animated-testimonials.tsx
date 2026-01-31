@@ -44,10 +44,10 @@ export const AnimatedTestimonials = ({
 
   useEffect(() => {
     if (autoplay) {
-      const interval = setInterval(handleNext, 8000); // Increased duration slightly for better readability
+      const interval = setInterval(handleNext, 8000); 
       return () => clearInterval(interval);
     }
-  }, [autoplay, active]); // Added active dependency to reset timer on manual interaction
+  }, [autoplay, active]);
 
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
@@ -98,7 +98,7 @@ export const AnimatedTestimonials = ({
                     src={testimonial.src}
                     alt={testimonial.name}
                     draggable={false}
-                    className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white pointer-events-none"
+                    className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white/20 pointer-events-none"
                   />
                 </motion.div>
               ))}
@@ -125,13 +125,13 @@ export const AnimatedTestimonials = ({
               ease: "easeInOut",
             }}
           >
-            <h3 className="text-3xl font-sans font-extrabold text-black tracking-tight">
+            <h3 className="text-3xl font-sans font-extrabold text-white tracking-tight">
               {testimonials[active].name}
             </h3>
-            <p className="text-sm text-brand-cta font-bold uppercase tracking-widest mt-1">
+            <p className="text-sm text-[#D4AF37] font-bold uppercase tracking-widest mt-1">
               {testimonials[active].designation}
             </p>
-            <motion.p className="text-lg text-gray-600 font-medium leading-relaxed mt-8">
+            <motion.p className="text-lg text-gray-200 font-medium leading-relaxed mt-8">
               {testimonials[active].quote.split(" ").map((word, index) => (
                 <motion.span
                   key={index}
@@ -160,15 +160,15 @@ export const AnimatedTestimonials = ({
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
               onClick={handlePrev}
-              className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center group/button hover:bg-brand-cta hover:text-white transition-colors duration-300"
+              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10"
             >
-              <ArrowLeft className="h-6 w-6 text-black group-hover/button:text-white group-hover/button:rotate-12 transition-transform duration-300" />
+              <ArrowLeft className="h-6 w-6 text-white group-hover/button:text-white group-hover/button:rotate-12 transition-transform duration-300" />
             </button>
             <button
               onClick={handleNext}
-              className="h-12 w-12 rounded-full bg-gray-100 flex items-center justify-center group/button hover:bg-brand-cta hover:text-white transition-colors duration-300"
+              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10"
             >
-              <ArrowRight className="h-6 w-6 text-black group-hover/button:text-white group-hover/button:-rotate-12 transition-transform duration-300" />
+              <ArrowRight className="h-6 w-6 text-white group-hover/button:text-white group-hover/button:-rotate-12 transition-transform duration-300" />
             </button>
           </div>
         </div>

@@ -15,14 +15,13 @@
           extend: {
             colors: {
               brand: {
-                bg: '#F9F8F6', /* Warm Off-White (Luxury Base) */
-                text: '#1A1A1A', /* Soft Black */
-                cta: '#977C71', /* Taupe - Signature Color */
-                ctaHover: '#7D655C',
-                detail: '#888888', /* Neutral Gray */
-                highlight: '#000000', /* Pure Black */
-                surface: '#FFFFFF', /* Pure White for cards */
-                glass: 'rgba(255, 255, 255, 0.7)',
+                bg: '#977C71', /* NEW BASE: Taupe */
+                text: '#F9F8F6', /* NEW TEXT: Off-White */
+                cta: '#F9F8F6', /* NEW CTA: Off-White button to pop on Taupe */
+                ctaText: '#977C71', /* Text inside CTA */
+                detail: '#Eaddcf', /* Light Sand */
+                highlight: '#FFFFFF', /* Pure White */
+                surface: 'rgba(255, 255, 255, 0.08)', /* Glass surface for cards */
                 gold: '#D4AF37', /* Luxury Gold */
               }
             },
@@ -45,7 +44,7 @@
               'float': 'float 6s ease-in-out infinite',
               'shimmer': 'shimmer 2s infinite',
               'pulse-slow': 'pulseSlow 8s infinite',
-              'aurora': 'aurora 60s linear infinite', /* Slowed down for better performance */
+              'aurora': 'aurora 60s linear infinite', 
             },
             keyframes: {
               fadeInUp: {
@@ -78,33 +77,31 @@
     </script>
     <style>
       body {
-        /* Base color fallback */
-        background-color: #F9F8F6;
-        color: #1A1A1A;
+        background-color: #977C71; /* Taupe Base */
+        color: #F9F8F6;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         min-height: 100vh;
         overflow-x: hidden;
       }
 
-      /* CSS Variables for Aurora Background (Medical Luxury Theme) */
+      /* CSS Variables for Aurora Background (Dark Luxury Theme) */
       :root {
         --white: #ffffff;
         --black: #000000;
         --transparent: transparent;
         
-        /* UPDATED: Creamier White for Aurora Base to avoid washout */
-        --aurora-white: #F3E9D9; /* Warm Cream/Beige */
+        /* UPDATED: Lighter colors to "shine" on the dark background using Overlay blend mode */
+        --aurora-white: #EADDcF; 
 
-        /* UPDATED: PURE GOLD PALETTE (Removing all cool tones) */
-        /* Using strong yellows and oranges to interact with mix-blend-mode correctly */
-        --aurora-1: #D4AF37; /* Pure Gold */
-        --aurora-2: #E5C25D; /* Light Gold */
+        /* UPDATED: Vibrant Golds & Creams */
+        --aurora-1: #D4AF37; /* Gold */
+        --aurora-2: #FFF5E1; /* Bright Cream */
         --aurora-3: #C5A028; /* Deep Gold */
-        --aurora-4: #F4E4BC; /* Champagne/Cream */
+        --aurora-4: #F9F8F6; /* White/Mist */
       }
       
-      /* RICH BACKGROUND SYSTEM (Fixed) */
+      /* RICH BACKGROUND SYSTEM */
       #luxury-bg {
         position: fixed;
         top: 0;
@@ -113,14 +110,13 @@
         height: 100vh;
         z-index: -50;
         pointer-events: none;
-        background-color: #F9F8F6;
+        background-color: #977C71;
         overflow: hidden;
-        /* Optimization: GPU Acceleration */
         transform: translateZ(0); 
         will-change: transform; 
       }
 
-      /* 1. Paper Grain Texture - Optimized opacity */
+      /* Texture for depth */
       #luxury-bg::before {
         content: "";
         position: absolute;
@@ -128,24 +124,28 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-        opacity: 0.4; /* Reduced slightly for performance */
-        mix-blend-mode: multiply;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.07'/%3E%3C/svg%3E");
+        opacity: 0.6;
+        mix-blend-mode: overlay; /* Changed to overlay for dark background */
       }
 
-      /* Clean scrollbar */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #F9F8F6;
+        background: #977C71;
       }
       ::-webkit-scrollbar-thumb {
-        background: #D4d4d4;
+        background: #D4AF37;
         border-radius: 4px;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #977C71;
+        background: #F9F8F6;
+      }
+      
+      ::selection {
+        background-color: #D4AF37;
+        color: #1A1A1A;
       }
     </style>
   <script type="importmap">
@@ -168,8 +168,8 @@
 </head>
   <body>
     <div id="luxury-bg">
-        <!-- Grid overlay moved to CSS only for cleanliness -->
-        <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(0,0,0,0.015) 1px, transparent 1px), linear-gradient(to bottom, rgba(0,0,0,0.015) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(circle at center, black 40%, transparent 100%);"></div>
+        <!-- Lighter grid for contrast -->
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 64px 64px; mask-image: radial-gradient(circle at center, black 40%, transparent 100%);"></div>
     </div>
     <div id="root"></div>
   <script type="module" src="/index.tsx"></script>

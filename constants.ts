@@ -39,8 +39,8 @@ export const DIAGNOSTICS_DATA = [
       'Predisposição a doenças e longevidade',
     ],
     icon: Dna,
-    // NEW IMAGE: Abstract High-End DNA structure
-    image: "https://images.unsplash.com/photo-1633167606207-d840b507049c?q=80&w=1000&auto=format&fit=crop" 
+    // IMAGE REMOVED to trigger Pure Glass Effect in Diagnostics.tsx
+    image: "" 
   },
 ];
 

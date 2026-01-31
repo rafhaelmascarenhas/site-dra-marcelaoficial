@@ -38,32 +38,32 @@ export const Component: React.FC<ButtonProps> = ({
   };
 
   const variants = {
-    // Primary: Taupe solid base -> HOVER GOLD (#D4AF37)
+    // Primary: Off-White background with Taupe text -> Hover Gold
     primary: `
-      bg-[#977C71] text-white 
-      border border-[#D4AF37]/30 
-      hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:scale-[1.02]
-      shadow-[0_4px_14px_0_rgba(151,124,113,0.39)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]
+      bg-[#F9F8F6] text-[#977C71] 
+      border border-white/50 
+      hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37] hover:scale-[1.02]
+      shadow-[0_4px_14px_0_rgba(0,0,0,0.1)] hover:shadow-[0_0_20px_rgba(212,175,55,0.4)]
     `,
     
-    // Outline: RESTORED GOLD HOVER
-    // Uses semi-transparent white background for legibility, but lights up GOLD on hover
+    // Outline: Transparent with White border -> Hover GOLD BACKGROUND, WHITE TEXT
     outline: `
-      bg-white/40 backdrop-blur-sm
-      text-[#977C71] border border-[#977C71]/40
-      hover:bg-[#D4AF37] hover:border-[#D4AF37] hover:text-white
-      hover:shadow-[0_4px_20px_rgba(212,175,55,0.25)]
+      bg-transparent backdrop-blur-sm
+      text-white border border-white/40
+      hover:bg-[#D4AF37] hover:text-white hover:border-[#D4AF37]
+      hover:shadow-[0_4px_20px_rgba(212,175,55,0.3)]
+      transition-colors duration-300
     `,
 
-    // Glass: For dark backgrounds
+    // Glass: Darker glass
     glass: `
-      bg-white/10 backdrop-blur-md border border-white/20 text-white
+      bg-black/20 backdrop-blur-md border border-white/10 text-white
       hover:bg-white/20 hover:border-[#D4AF37]/50
     `,
     
-    // Ghost: Minimalist
+    // Ghost: Subtle
     ghost: `
-      bg-white/40 backdrop-blur-md border border-white/40 text-[#1A1A1A]
+      bg-white/10 backdrop-blur-md border border-white/10 text-white
       hover:bg-white hover:text-[#977C71]
     `
   };
@@ -86,16 +86,16 @@ export const Component: React.FC<ButtonProps> = ({
         size: 18, 
         className: cn(
            "transition-transform duration-300 group-hover:scale-110",
-           // Outline: Icon follows text color (Taupe -> White). Primary: Always white.
-           variant === 'outline' ? "text-current" : "text-white"
+           // Icon is current color, on hover becomes white
+           "text-current group-hover:text-white"
         )
       })}
       
       {content && <span className="relative z-10">{content}</span>}
       
-      {/* Shine Effect for Primary and Outline (on hover) */}
+      {/* Shine Effect */}
       {(variant === 'primary' || variant === 'outline') && (
-        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/20 opacity-0 group-hover:opacity-100 group-hover:animate-shine transition-opacity duration-300" />
+        <div className="absolute top-0 -inset-full h-full w-1/2 z-5 block transform -skew-x-12 bg-gradient-to-r from-transparent to-white/30 opacity-0 group-hover:opacity-100 group-hover:animate-shine transition-opacity duration-300" />
       )}
     </button>
   );

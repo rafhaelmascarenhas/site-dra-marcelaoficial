@@ -44,17 +44,17 @@ const STATS_DATA: StatItem[] = [
 
 export const StatsCarousel = () => {
   return (
-    <div className="w-full py-12 bg-white/40 backdrop-blur-md border-y border-[#D4AF37]/10 relative overflow-hidden">
-        {/* Gradients for fade effect on edges */}
-        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#FBF9F7] to-transparent z-10"></div>
-        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#FBF9F7] to-transparent z-10"></div>
+    <div className="w-full py-12 bg-black/10 backdrop-blur-md border-y border-white/10 relative overflow-hidden">
+        {/* Gradients matching the TAUPE BACKGROUND (#977C71) */}
+        <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-[#977C71] to-transparent z-10"></div>
+        <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-[#977C71] to-transparent z-10"></div>
 
         <Carousel
           opts={{ loop: true }}
           plugins={[
-            // @ts-ignore - Embla types can be tricky with CDN imports sometimes, but logic works
+            // @ts-ignore
             AutoScroll({ 
-                speed: 0.6, // Slower speed
+                speed: 0.6, 
                 startDelay: 0,
                 stopOnInteraction: false,
                 stopOnMouseEnter: true
@@ -62,7 +62,7 @@ export const StatsCarousel = () => {
           ]}
         >
           <CarouselContent className="ml-0 items-center">
-            {/* Repeating data multiple times to ensure smooth infinite scroll even on large screens */}
+            {/* Repeating data */}
             {[...STATS_DATA, ...STATS_DATA, ...STATS_DATA, ...STATS_DATA].map((stat, index) => (
               <CarouselItem
                 key={index}
@@ -71,19 +71,19 @@ export const StatsCarousel = () => {
                 <div className="mx-8 md:mx-16 flex flex-col items-center justify-center text-center whitespace-nowrap select-none">
                     
                     {stat.preLabel && (
-                        <span className="text-[#977C71] text-[10px] font-bold uppercase tracking-widest mb-1 block">
+                        <span className="text-[#F9F8F6] text-[10px] font-bold uppercase tracking-widest mb-1 block">
                             {stat.preLabel}
                         </span>
                     )}
                     
                     <div className="flex items-baseline justify-center">
-                        <span className="font-sans font-extrabold text-5xl md:text-6xl text-[#1A1A1A] tracking-tighter">
+                        <span className="font-sans font-extrabold text-5xl md:text-6xl text-white tracking-tighter drop-shadow-sm">
                             {stat.value}
                             {stat.subValue && <span className="text-3xl md:text-4xl ml-1 text-[#D4AF37]">{stat.subValue}</span>}
                         </span>
                     </div>
                     
-                    <span className="text-gray-500 font-medium text-sm mt-2 block">
+                    <span className="text-gray-300 font-medium text-sm mt-2 block">
                         {stat.label}
                     </span>
                     
