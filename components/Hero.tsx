@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { ArrowRight, FileText, Circle } from 'lucide-react';
 import { Component as LuxuryButton } from './ui/button';
 import { FeatureCarousel } from './ui/feature-carousel';
-import { BackgroundPaths } from './ui/background-paths';
 import { cn } from '../lib/utils';
 
 export const Hero: React.FC = () => {
@@ -39,7 +38,7 @@ export const Hero: React.FC = () => {
   };
 
   return (
-    <BackgroundPaths className="pt-32 pb-20">
+    <div className="relative min-h-screen w-full flex flex-col items-center justify-start overflow-hidden bg-brand-bg pt-32 pb-20">
       
       <div className="container mx-auto max-w-6xl relative z-10 flex flex-col items-center text-center space-y-10 px-4">
         
@@ -129,6 +128,6 @@ export const Hero: React.FC = () => {
         </motion.div>
 
       </div>
-    </BackgroundPaths>
+    </div>
   );
 };

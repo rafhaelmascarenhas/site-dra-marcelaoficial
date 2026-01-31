@@ -71,14 +71,14 @@ export const FeatureCarousel = React.forwardRef<HTMLDivElement, HeroProps>(
                     )}
                     style={{
                       transform: `
-                        translateX(${distance * 60}%) 
+                        translateX(${distance * (isCenter ? 0 : 35)}%) 
                         scale(${isCenter ? 1 : 0.8})
-                        rotateY(${distance * -15}deg)
-                        translateZ(${isCenter ? 0 : -100}px)
+                        rotateY(${isCenter ? 0 : distance * -10}deg)
+                        translateZ(${isCenter ? 0 : -80}px)
                       `,
                       zIndex: zIndex,
                       opacity: opacity,
-                      filter: isCenter ? 'blur(0px) contrast(1.05)' : 'blur(2px) grayscale(50%)',
+                      filter: isCenter ? 'blur(0px) contrast(1.05)' : 'blur(1px) grayscale(30%)',
                       visibility: isVisible || isAdjacent ? 'visible' : 'hidden', 
                     }}
                   >
@@ -91,7 +91,7 @@ export const FeatureCarousel = React.forwardRef<HTMLDivElement, HeroProps>(
                       width={320}
                       height={480}
                     />
-                    {!isCenter && <div className="absolute inset-0 bg-white/30 backdrop-blur-[1px]"></div>}
+                    {!isCenter && <div className="absolute inset-0 bg-white/30 "></div>}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-50"></div>
                   </div>
                 );
