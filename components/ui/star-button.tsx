@@ -39,24 +39,40 @@ export function StarButton({
     primary: {
       light: lightColor || "#ffffff",
       classes: cn(
-        "bg-black/40 backdrop-blur-xl text-white/95",
-        "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),inset_0_-1px_1px_rgba(0,0,0,0.2),0_4px_20px_rgba(0,0,0,0.15)]",
-        "hover:bg-black/50 hover:text-white",
-        "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.25)]",
-        "border border-white/5"
+        // Base: Glass Escuro e Profundo (Mais contraste - Restaurado)
+        "bg-black/80 backdrop-blur-xl text-white",
+        
+        // Borda Sutil
+        "border border-white/10",
+
+        // PROFUNDIDADE REAL (High Fidelity)
+        // 1. Inset Top: Luz branca nítida (Highlight)
+        // 2. Inset Bottom: Sombra suave interna
+        // 3. Drop Shadow: Sombra externa larga e macia (Soft Shadow)
+        "shadow-[inset_0_1px_0_0_rgba(255,255,255,0.25),inset_0_-2px_4px_0_rgba(0,0,0,0.3),0_12px_24px_-6px_rgba(0,0,0,0.6)]",
+        
+        // INTERAÇÃO PREMIUM (Micro Lift)
+        "hover:-translate-y-[2px]", // O botão "flutua" levemente
+        "hover:bg-black/90",
+        "hover:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.4),0_20px_32px_-8px_rgba(0,0,0,0.7)]", // Aumenta a sombra projetada
+        "active:translate-y-[1px] active:shadow-[inset_0_2px_4px_0_rgba(0,0,0,0.5)]" // Feedback de clique
       )
     },
     outline: {
       light: lightColor || "#ffffff",
       classes: cn(
-        // Base: Neutra e Limpa
+        // Base: Vidro Branco Leitoso (Mais contraste e presença)
         "bg-white/10 backdrop-blur-md text-white font-semibold",
-        "border border-white/20",
         
-        // Hover: Apenas ilumina o fundo e a borda (sem glow dourado exagerado)
-        "hover:bg-white/20 hover:border-white/40 hover:text-white",
-        // Removida a sombra dourada
-        "hover:shadow-none",
+        // Borda: Branca Translúcida Forte
+        "border border-white/30",
+        
+        // Sombra: Leve brilho branco para destacar do fundo escuro
+        "shadow-[0_4px_20px_rgba(0,0,0,0.1)]",
+        
+        // Hover: Fica mais branco e evidente (Feedback claro)
+        "hover:bg-white/20 hover:border-white/50 hover:text-white",
+        "hover:shadow-[0_4px_25px_rgba(255,255,255,0.15)]",
         
         "transition-all duration-300"
       )
@@ -97,10 +113,18 @@ export function StarButton({
       }
       ref={pathRef}
       className={cn(
-        "relative z-[3] overflow-hidden h-14 px-8 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[50px]",
-        "text-sm font-bold uppercase tracking-widest transition-all duration-300",
+        // LAYOUT & TIPOGRAFIA REFINADA
+        "relative z-[3] overflow-hidden h-14 px-8",
+        "inline-flex items-center justify-center gap-3", // Gap fixo de 12px (gap-3)
+        "rounded-[50px] whitespace-nowrap",
+        
+        // Texto mais "caro" (Semi-bold + Tracking Wide apenas, não Widest)
+        "text-sm font-semibold uppercase tracking-wide",
+        
+        // Transições de base
+        "transition-all duration-300 ease-out",
         "disabled:pointer-events-none disabled:opacity-50 group",
-        "border", 
+        
         currentVariant.classes,
         className,
       )}
@@ -117,12 +141,13 @@ export function StarButton({
         }
       />
       
-      {/* Brilho Superior apenas para Primary/Gold */}
+      {/* Brilho Superior Sutil (Apenas para Primary e Gold para dar volume) */}
       {(variant === 'primary' || variant === 'gold') && (
-        <div className="absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-white/15 to-transparent rounded-t-[50px] pointer-events-none" />
+        <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-[50px] pointer-events-none mix-blend-overlay" />
       )}
 
-      <span className="z-10 relative flex items-center gap-2 drop-shadow-sm">
+      {/* Conteúdo Centralizado */}
+      <span className="z-10 relative flex items-center gap-3">
         {children}
       </span>
     </button>
