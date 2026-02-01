@@ -6,15 +6,15 @@ module.exports = {
       animation: {
         "shimmer-slide": "shimmer-slide var(--speed) ease-in-out infinite alternate",
         "spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
-        "rotateBorder": "rotateBorder 3s linear infinite",
+        "star-btn": "star-btn calc(var(--duration) * 1s) linear infinite",
       },
       keyframes: {
-        "rotateBorder": {
+        "star-btn": {
           "0%": {
-            transform: "rotate(0deg)",
+            "offset-distance": "0%",
           },
           "100%": {
-            transform: "rotate(360deg)",
+            "offset-distance": "100%",
           },
         },
         "spin-around": {
