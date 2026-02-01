@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X, Instagram, Mail } from 'lucide-react';
 import { NAV_LINKS } from '../constants';
-import { Component as LuxuryButton } from './ui/button';
+import { StarButton } from './ui/star-button';
 
 export const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,6 +14,14 @@ export const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+      setIsOpen(false);
+    }
+  };
 
   return (
     <>
@@ -60,14 +68,13 @@ export const Navbar: React.FC = () => {
 
           {/* CTA Button */}
           <div className="hidden md:flex flex-shrink-0 items-center justify-end relative z-10 ml-4">
-            <a href="#contato">
-                <button className={`
-                    bg-[#F9F8F6] text-[#977C71] rounded-full font-bold uppercase tracking-widest hover:bg-[#D4AF37] hover:text-white transition-all shadow-md
-                    ${isScrolled ? 'px-6 py-2.5 text-[10px]' : 'px-7 py-3 text-xs'}
-                `}>
-                    Agendar
-                </button>
-            </a>
+            <StarButton 
+                variant="light"
+                onClick={() => scrollToSection('contato')}
+                className={isScrolled ? 'h-10 px-6 text-[10px]' : 'h-12 px-7 text-xs'}
+            >
+                Agendar
+            </StarButton>
           </div>
 
           {/* Mobile Toggle */}
@@ -97,14 +104,14 @@ export const Navbar: React.FC = () => {
             ))}
           </div>
           
-          <div className="mt-auto mb-10 w-full">
-            <LuxuryButton 
-                variant="primary" 
-                fullWidth
-                onClick={() => setIsOpen(false)}
+          <div className="mt-auto mb-10 w-full flex justify-center">
+            <StarButton 
+                variant="outline" 
+                className="w-full"
+                onClick={() => scrollToSection('contato')}
             >
                 Agendar Consulta
-            </LuxuryButton>
+            </StarButton>
           </div>
         </div>
       )}

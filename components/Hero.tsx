@@ -4,7 +4,6 @@ import { ArrowRight, FileText, Circle } from 'lucide-react';
 import { StarButton } from './ui/star-button';
 import { FeatureCarousel } from './ui/feature-carousel';
 import { cn } from '../lib/utils';
-import { Component as LuxuryButton } from './ui/button';
 
 export const Hero: React.FC = () => {
   
@@ -80,8 +79,9 @@ export const Hero: React.FC = () => {
                 variants={fadeUpVariants}
                 initial="hidden"
                 animate="visible"
+                className="mb-8"
             >
-                <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-10 leading-relaxed font-medium max-w-2xl mx-auto drop-shadow-sm">
+                <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed font-medium max-w-2xl mx-auto drop-shadow-sm">
                     Uma abordagem clínica baseada 100% em dados genéticos para garantir longevidade, estética e alta performance.
                 </p>
             </motion.div>
@@ -94,26 +94,29 @@ export const Hero: React.FC = () => {
                 animate="visible"
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
             >
+                {/* Botão Primário - StarButton Primary (Vidro Fumê) */}
                 <div className="w-full sm:w-auto">
                   <StarButton
-                    onClick={(e: React.MouseEvent<HTMLButtonElement>) => scrollToSection(e, 'diagnostico')}
+                    variant="primary"
+                    onClick={(e) => scrollToSection(e, 'diagnostico')}
                     className="w-full sm:w-auto min-w-[240px]"
-                    lightColor="#ffffff"
-                    duration={3}
                   >
                     Iniciar Jornada
                     <ArrowRight className="w-4 h-4" />
                   </StarButton>
                 </div>
-                <div className="w-full sm:w-auto" onClick={(e) => scrollToSection(e, 'metodologia')}>
-                    <LuxuryButton 
+
+                {/* Botão Secundário - StarButton Outline (LIMPO, SEM DOURADO) */}
+                <div className="w-full sm:w-auto">
+                    <StarButton
                         variant="outline"
-                        icon={<FileText />}
-                        fullWidth
+                        onClick={(e) => scrollToSection(e, 'metodologia')}
                         className="w-full sm:w-auto min-w-[240px]"
+                        // REMOVIDO: lightColor="#D4AF37"
                     >
                         Entenda o Método
-                    </LuxuryButton>
+                        <FileText className="w-4 h-4" />
+                    </StarButton>
                 </div>
             </motion.div>
         </div>

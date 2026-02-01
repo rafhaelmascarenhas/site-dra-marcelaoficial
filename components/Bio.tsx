@@ -1,8 +1,15 @@
 import React from 'react';
 import { Award, Calendar, FileText } from 'lucide-react';
-import { Component as LuxuryButton } from './ui/button';
+import { StarButton } from './ui/star-button';
 
 export const Bio: React.FC = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="bio" className="pt-12 pb-20 md:py-24 px-6 bg-transparent border-t border-white/10">
       <div className="container mx-auto max-w-6xl">
@@ -58,26 +65,24 @@ export const Bio: React.FC = () => {
 
                 <div className="pt-6 flex flex-col sm:flex-row gap-4">
                     <div className="w-full sm:w-auto">
-                        <a href="#contato">
-                            <LuxuryButton 
-                                variant="primary" 
-                                icon={<Calendar />}
-                                className="w-full sm:w-[260px]"
-                            >
-                                Agendar Consulta
-                            </LuxuryButton>
-                        </a>
+                        <StarButton 
+                            variant="primary" // Alterado para PRIMARY (Preto igual 'Iniciar Jornada')
+                            className="w-full sm:w-[260px]"
+                            onClick={() => scrollToSection('contato')}
+                        >
+                            Agendar Consulta
+                            <Calendar className="w-4 h-4" />
+                        </StarButton>
                     </div>
                     <div className="w-full sm:w-auto">
-                        <a href="#metodologia">
-                            <LuxuryButton 
-                                variant="outline"
-                                icon={<FileText />}
-                                className="w-full sm:w-[260px]"
-                            >
-                                Ver Curriculo
-                            </LuxuryButton>
-                        </a>
+                        <StarButton 
+                            variant="outline" // Mantido OUTLINE (Igual 'Entenda o Método')
+                            className="w-full sm:w-[260px]"
+                            onClick={() => scrollToSection('metodologia')}
+                        >
+                            Ver Curriculo
+                            <FileText className="w-4 h-4" />
+                        </StarButton>
                     </div>
                 </div>
             </div>

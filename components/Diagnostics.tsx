@@ -2,12 +2,19 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { DIAGNOSTICS_DATA } from '../constants';
 import { ScanLine, Calendar, Check } from 'lucide-react'; 
-import { Component as LuxuryButton } from './ui/button';
+import { StarButton } from './ui/star-button';
 import { cn } from '../lib/utils';
 
 export const Diagnostics: React.FC = () => {
   const epigeneticsData = DIAGNOSTICS_DATA[0];
   const geneticsData = DIAGNOSTICS_DATA[1];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   // Shared Card Component
   const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], index: number }) => {
@@ -153,14 +160,13 @@ export const Diagnostics: React.FC = () => {
             
             {/* Desktop Button */}
             <div className="hidden md:block">
-                 <a href="#contato">
-                    <LuxuryButton 
-                        variant="outline"
-                        icon={<Calendar />}
-                    >
-                        Agendar Mapeamento
-                    </LuxuryButton>
-                 </a>
+                 <StarButton 
+                    variant="outline"
+                    onClick={() => scrollToSection('contato')}
+                >
+                    Agendar Mapeamento
+                    <Calendar className="w-4 h-4" />
+                </StarButton>
             </div>
         </div>
 
@@ -172,15 +178,14 @@ export const Diagnostics: React.FC = () => {
         
         {/* Mobile Button */}
         <div className="md:hidden flex justify-center w-full mb-4">
-             <a href="#contato" className="w-full">
-                <LuxuryButton 
-                    variant="primary"
-                    icon={<Calendar />}
-                    fullWidth
-                >
-                    Agendar Mapeamento
-                </LuxuryButton>
-            </a>
+             <StarButton 
+                variant="outline"
+                onClick={() => scrollToSection('contato')}
+                className="w-full"
+            >
+                Agendar Mapeamento
+                <Calendar className="w-4 h-4" />
+            </StarButton>
         </div>
 
       </div>

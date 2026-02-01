@@ -2,7 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { PROTOCOLS_DATA } from '../constants';
 import { Plus } from 'lucide-react';
-import { Component as LuxuryButton } from './ui/button';
+import { StarButton } from './ui/star-button';
 
 interface ProtocolCardProps {
   protocol: typeof PROTOCOLS_DATA[0];
@@ -80,6 +80,13 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
 };
 
 export const Protocols: React.FC = () => {
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <section id="protocolos" className="py-12 md:py-20 px-6 bg-transparent text-white relative">
       
@@ -102,14 +109,13 @@ export const Protocols: React.FC = () => {
             
             {/* Desktop Button */}
             <div className="hidden md:block">
-                 <a href="#contato">
-                    <LuxuryButton 
-                        variant="outline"
-                        icon={<Plus />}
-                    >
-                        Agendar Avaliação
-                    </LuxuryButton>
-                 </a>
+                 <StarButton 
+                    variant="outline"
+                    onClick={() => scrollToSection('contato')}
+                >
+                    Agendar Avaliação
+                    <Plus className="w-4 h-4" />
+                </StarButton>
             </div>
         </div>
 
@@ -122,15 +128,14 @@ export const Protocols: React.FC = () => {
 
         {/* Mobile Button */}
         <div className="mt-8 text-center md:hidden mb-4">
-            <a href="#contato" className="w-full">
-                <LuxuryButton 
-                    variant="primary"
-                    icon={<Plus />}
-                    fullWidth
-                >
-                    Agendar Avaliação
-                </LuxuryButton>
-            </a>
+            <StarButton 
+                variant="outline"
+                onClick={() => scrollToSection('contato')}
+                className="w-full"
+            >
+                Agendar Avaliação
+                <Plus className="w-4 h-4" />
+            </StarButton>
         </div>
 
       </div>

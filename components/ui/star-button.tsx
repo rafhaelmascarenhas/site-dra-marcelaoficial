@@ -3,25 +3,23 @@
 import React, { useRef, useEffect, ReactNode, CSSProperties } from "react";
 import { cn } from "@/lib/utils";
 
-interface StarButtonProps {
+interface StarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   lightWidth?: number;
   duration?: number;
   lightColor?: string;
-  backgroundColor?: string;
   borderWidth?: number;
-  className?: string;
-  onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  variant?: 'primary' | 'outline' | 'gold' | 'light';
 }
 
 export function StarButton({
   children,
-  lightWidth = 100, // Reduzi um pouco a largura do rastro
+  lightWidth = 100,
   duration = 3,
-  lightColor = "#ffffff",
-  backgroundColor = "transparent", // Fundo controlado via classes agora
+  lightColor,
   borderWidth = 1,
   className,
+  variant = 'primary',
   onClick,
   ...props
 }: StarButtonProps) {
@@ -37,6 +35,54 @@ export function StarButton({
     }
   }, []);
 
+  const variants = {
+    primary: {
+      light: lightColor || "#ffffff",
+      classes: cn(
+        "bg-black/40 backdrop-blur-xl text-white/95",
+        "shadow-[inset_0_1px_0_rgba(255,255,255,0.1),inset_0_-1px_1px_rgba(0,0,0,0.2),0_4px_20px_rgba(0,0,0,0.15)]",
+        "hover:bg-black/50 hover:text-white",
+        "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.2),0_8px_30px_rgba(0,0,0,0.25)]",
+        "border border-white/5"
+      )
+    },
+    outline: {
+      light: lightColor || "#ffffff",
+      classes: cn(
+        // Base: Neutra e Limpa
+        "bg-white/10 backdrop-blur-md text-white font-semibold",
+        "border border-white/20",
+        
+        // Hover: Apenas ilumina o fundo e a borda (sem glow dourado exagerado)
+        "hover:bg-white/20 hover:border-white/40 hover:text-white",
+        // Removida a sombra dourada
+        "hover:shadow-none",
+        
+        "transition-all duration-300"
+      )
+    },
+    gold: {
+      light: lightColor || "#ffffff",
+      classes: cn(
+        "bg-[#D4AF37]/90 backdrop-blur-md text-white",
+        "shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_4px_20px_rgba(212,175,55,0.3)]",
+        "hover:bg-[#D4AF37] hover:shadow-[0_8px_25px_rgba(212,175,55,0.4)]",
+        "border-white/10"
+      )
+    },
+    light: {
+      light: lightColor || "#D4AF37",
+      classes: cn(
+        "bg-[#F9F8F6] text-[#977C71]",
+        "shadow-md",
+        "hover:bg-[#D4AF37] hover:text-white hover:shadow-lg",
+        "border border-white/50"
+      )
+    }
+  };
+
+  const currentVariant = variants[variant] || variants.primary;
+
   return (
     <button
       onClick={onClick}
@@ -44,38 +90,22 @@ export function StarButton({
         {
           "--duration": duration,
           "--light-width": `${lightWidth}px`,
-          "--light-color": lightColor,
+          "--light-color": currentVariant.light,
           "--border-width": `${borderWidth}px`,
           isolation: "isolate",
         } as CSSProperties
       }
       ref={pathRef}
       className={cn(
-        "relative z-[3] overflow-hidden h-14 px-8 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[50px] text-sm font-bold uppercase tracking-widest transition-all duration-300 disabled:pointer-events-none disabled:opacity-50 group",
-        
-        // --- BASE SUAVIZADA ---
-        // Preto translúcido com Blur (Vidro Fumê)
-        "bg-black/60 backdrop-blur-md text-white/90",
-        
-        // --- EFEITO GLASS SUTIL ---
-        // Inset Top: Luz branca muito mais suave (0.15)
-        // Inset Bottom: Sombra suave para volume
-        // Drop Shadow: Sombra projetada mais leve
-        "shadow-[inset_0_1px_0_rgba(255,255,255,0.15),inset_0_-1px_2px_rgba(0,0,0,0.3),0_4px_20px_rgba(0,0,0,0.2)]",
-        
-        // Hover: Fica um pouco mais sólido e brilhante
-        "hover:bg-black/70 hover:text-white",
-        "hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),inset_0_-1px_4px_rgba(0,0,0,0.4),0_8px_25px_rgba(0,0,0,0.3)]",
-        "hover:scale-[1.01] active:scale-[0.99]",
-        
-        // Borda quase invisível para acabamento
-        "border border-white/5",
-        
+        "relative z-[3] overflow-hidden h-14 px-8 inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[50px]",
+        "text-sm font-bold uppercase tracking-widest transition-all duration-300",
+        "disabled:pointer-events-none disabled:opacity-50 group",
+        "border", 
+        currentVariant.classes,
         className,
       )}
       {...props}
     >
-      {/* Animação da Luz na Borda (Opacity reduzida para não ofuscar) */}
       <div
         className="absolute aspect-square inset-0 animate-star-btn bg-[radial-gradient(ellipse_at_center,var(--light-color),transparent,transparent)] opacity-70 mix-blend-screen"
         style={
@@ -87,10 +117,11 @@ export function StarButton({
         }
       />
       
-      {/* Brilho Superior Suave (Gradiente) */}
-      <div className="absolute top-0 left-0 right-0 h-[40%] bg-gradient-to-b from-white/10 to-transparent rounded-t-[50px] pointer-events-none" />
+      {/* Brilho Superior apenas para Primary/Gold */}
+      {(variant === 'primary' || variant === 'gold') && (
+        <div className="absolute top-0 left-0 right-0 h-[35%] bg-gradient-to-b from-white/15 to-transparent rounded-t-[50px] pointer-events-none" />
+      )}
 
-      {/* Conteúdo */}
       <span className="z-10 relative flex items-center gap-2 drop-shadow-sm">
         {children}
       </span>
