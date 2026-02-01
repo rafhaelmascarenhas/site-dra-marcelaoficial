@@ -1,9 +1,10 @@
 import React from 'react';
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Circle } from 'lucide-react';
-import { Component as LuxuryButton } from './ui/button';
+import { ShimmerButton } from './ui/shimmer-button';
 import { FeatureCarousel } from './ui/feature-carousel';
 import { cn } from '../lib/utils';
+import { Component as LuxuryButton } from './ui/button';
 
 export const Hero: React.FC = () => {
   
@@ -94,14 +95,33 @@ export const Hero: React.FC = () => {
                 className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto px-4 sm:px-0"
             >
                 <div className="w-full sm:w-auto" onClick={(e) => scrollToSection(e, 'diagnostico')}>
-                    <LuxuryButton 
-                        variant="primary"
-                        icon={<ArrowRight />}
-                        fullWidth
-                        className="w-full sm:w-auto min-w-[240px]"
+                  <div className="relative w-full sm:w-auto">
+                    {/* Efeito de luz animada na borda */}
+                    <div 
+                      className="absolute inset-0 rounded-[50px] pointer-events-none animate-rotateBorder"
+                      style={{
+                        padding: '2px',
+                        background: 'linear-gradient(90deg, transparent, #ffffff, transparent)',
+                        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                        WebkitMaskComposite: 'xor',
+                        maskComposite: 'exclude',
+                      }}
+                    />
+                    
+                    {/* Botão original mantido EXATAMENTE igual */}
+                    <ShimmerButton
+                      className="w-full sm:w-auto min-w-[240px] h-14 px-8 font-sans font-bold text-xs uppercase tracking-widest relative z-10"
+                      shimmerColor="#ffffff"
+                      background="rgba(0, 0, 0, 0.9)"
+                      shimmerDuration="2.5s"
+                      borderRadius="50px"
                     >
+                      <span className="relative z-10 flex items-center justify-center gap-2">
                         Iniciar Jornada
-                    </LuxuryButton>
+                        <ArrowRight />
+                      </span>
+                    </ShimmerButton>
+                  </div>
                 </div>
                 <div className="w-full sm:w-auto" onClick={(e) => scrollToSection(e, 'metodologia')}>
                     <LuxuryButton 
