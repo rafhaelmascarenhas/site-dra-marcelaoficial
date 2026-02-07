@@ -51,12 +51,15 @@ export const Hero: React.FC = () => {
                 variants={fadeUpVariants}
                 initial="hidden"
                 animate="visible"
-                className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 shadow-sm mb-8 hover:bg-white/20 transition-colors"
+                className="mb-8"
             >
-                <Circle className="h-2 w-2 fill-[#D4AF37]" />
-                <span className="text-xs md:text-sm text-[#F9F8F6] tracking-widest uppercase font-bold drop-shadow-sm">
+                <StarButton 
+                    variant="outline"
+                    className="h-auto py-2 px-6 text-xs md:text-sm tracking-widest font-bold uppercase pointer-events-none"
+                >
+                    <Circle className="h-2 w-2 fill-[#D4AF37]" />
                     Medicina de Precisão
-                </span>
+                </StarButton>
             </motion.div>
             
             {/* Headlines */}
