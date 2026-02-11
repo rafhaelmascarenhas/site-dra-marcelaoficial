@@ -85,7 +85,7 @@ export const Hero: React.FC = () => {
                 className="mb-8"
             >
                 <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed font-medium max-w-2xl mx-auto drop-shadow-sm">
-                    Uma abordagem clínica baseada 100% em dados genéticos para garantir longevidade, estética e alta performance.
+                    Uma abordagem clínica baseada 100% em dados precisos para garantir longevidade, estética e alta performance.
                 </p>
             </motion.div>
 

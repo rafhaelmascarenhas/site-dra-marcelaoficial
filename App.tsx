@@ -13,8 +13,8 @@ function App() {
       <Navbar />
       <main>
         <Hero />
-        <Diagnostics />
         <Protocols />
+        <Diagnostics />
         <Methodology />
         <Authority />
         <Bio />

@@ -47,39 +47,53 @@ export const DIAGNOSTICS_DATA = [
 export const PROTOCOLS_DATA = [
   {
     title: 'Programa RESET SLIM®',
-    description: 'Emagrecimento de alta performance com foco na não-recuperação do peso.',
+    description: 'Emagrecimento de alta performance de forma concreta e sustentável',
     fullDescription: 'Reeducação metabólica somada a terapias injetáveis para queima de gordura visceral.',
     tags: ['Emagrecimento', 'Sem Reganho'],
     icon: Zap,
     image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop", // Healthy food/Organic/Luxury
     colSpan: "md:col-span-2",
+    tagsContainerClass: "",
+  },
+  {
+    title: 'Tecnologia Transform X',
+    description: 'Modulação Hormonal, Terapias Injetáveis e RESET SLIM (Programa de emagrecimento)',
+    fullDescription: 'A mais avançada tecnologia para potencializar seus resultados.',
+    tags: ['Alta Performance', 'Tecnologia'],
+    icon: Brain,
+    image: "https://images.unsplash.com/photo-1581093458791-9f30225d5d61?q=80&w=1000&auto=format&fit=crop", // Futuristic tech/Lab
+    colSpan: "md:col-span-1",
+    tagsContainerClass: "",
   },
   {
     title: 'Implantes Hormonais',
     description: 'Reposição bioidêntica com dosagem milimétrica.',
     fullDescription: 'Para menopausa, endometriose, SOP e recuperação da libido e massa magra.',
-    tags: ['Bioidênticos', 'Menopausa', 'Libido'],
+    tags: ['Menopausa', 'Andropausa', 'Queda de libido', 'Lipedema'],
     icon: UserCheck,
     image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1000&auto=format&fit=crop", // Woman confident/sunlight
     colSpan: "md:col-span-1",
+    tagsContainerClass: "",
   },
   {
     title: 'Soroterapia (Injetáveis)',
     description: 'Nutrientes 100% absorvíveis na corrente sanguínea.',
     fullDescription: 'Protocolos exclusivos para beauty, performance cognitiva, detox e energia.',
-    tags: ['Performance', 'Beleza', 'Detox'],
+    tags: ['Performance', 'Beleza', 'Detox', 'Disposição'],
     icon: Syringe,
     image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop", // Spa/Clinic Luxury
     colSpan: "md:col-span-1",
+    tagsContainerClass: "max-w-[250px]", 
   },
   {
     title: 'Imunoestimulante',
-    description: 'Tratamento focado para Candidíase de Repetição.',
+    description: 'Prevenção de doenças baseada em estratégias',
     fullDescription: 'Uma "faxina celular" que reativa suas defesas e restaura a saúde íntima.',
-    tags: ['Imunidade', 'Saúde da Mulher'],
+    tags: ['Imunidade', 'Saúde'],
     icon: Shield,
     image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1000&auto=format&fit=crop", // Yoga/Peace/Wellness
-    colSpan: "md:col-span-2",
+    colSpan: "md:col-span-1",
+    tagsContainerClass: "",
   },
 ];
 
