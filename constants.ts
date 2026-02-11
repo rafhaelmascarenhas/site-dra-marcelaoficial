@@ -35,7 +35,7 @@ export const DIAGNOSTICS_DATA = [
     description: 'Um mapa profundo do seu código biológico para prever riscos e personalizar estratégias de longo prazo. Coleta simples via swab bucal.',
     details: [
       'Nutrigenética e metabolismo',
-      'Farmacogenética (resposta a remédios)',
+      'Sensibilidade alimentar',
       'Predisposição a doenças e longevidade',
     ],
     icon: Dna,
@@ -122,7 +122,7 @@ export const JOURNEY_STEPS = [
   {
     step: '04',
     title: 'Execução',
-    description: 'Aplicação dos protocolos (injetáveis, implantes) e acompanhamento contínuo.',
+    description: 'Aplicação de protocolos e acompanhamentos multidisciplinar e contínuos',
     icon: Syringe,
     image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop" // Clinic/Treatment
   },

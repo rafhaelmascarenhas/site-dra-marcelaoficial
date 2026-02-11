@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { PROTOCOLS_DATA } from '../constants';
 import { Plus } from 'lucide-react';
 import { StarButton } from './ui/star-button';
+import { cn } from '../lib/utils';
 
 interface ProtocolCardProps {
   protocol: typeof PROTOCOLS_DATA[0];
@@ -55,7 +56,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
 
         {/* Bottom Content */}
         <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <div className="flex flex-wrap gap-2 mb-4">
+            <div className={cn("flex flex-wrap gap-2 mb-4", protocol.tagsContainerClass)}>
                 {protocol.tags.map((tag, idx) => (
                 <span key={idx} className="px-3 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/10 text-[10px] font-bold uppercase tracking-wide text-white/90">
                     {tag}

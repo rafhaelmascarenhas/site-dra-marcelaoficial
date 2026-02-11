@@ -74,16 +74,6 @@ export const Bio: React.FC = () => {
                             <Calendar className="w-4 h-4" />
                         </StarButton>
                     </div>
-                    <div className="w-full sm:w-auto">
-                        <StarButton 
-                            variant="outline" // Mantido OUTLINE (Igual 'Entenda o Método')
-                            className="w-full sm:w-[260px]"
-                            onClick={() => scrollToSection('metodologia')}
-                        >
-                            Ver Curriculo
-                            <FileText className="w-4 h-4" />
-                        </StarButton>
-                    </div>
                 </div>
             </div>
 
