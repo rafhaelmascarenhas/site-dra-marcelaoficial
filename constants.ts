@@ -10,8 +10,8 @@ export const NAV_LINKS = [
 ];
 
 export const STATISTICS = [
-  { value: '+2.000', label: 'Pacientes Atendidos' },
-  { value: '+1.000kg', label: 'Gordura Eliminada' },
+  { value: '+2.000', label: 'Vidas transformadas' },
+  { value: '+10.000kg', label: 'Gordura Eliminada' },
   { value: '95%', label: 'Taxa de Fidelização' },
   { value: '< 2%', label: 'Taxa de Reganho' },
 ];

@@ -20,11 +20,12 @@ interface StatItem {
 const STATS_DATA: StatItem[] = [
   {
     value: "2.000",
-    label: "Pacientes Atendidos"
+    label: "Vidas Transformadas",
+    preLabel: "Mais de",
   },
   {
     preLabel: "Mais de",
-    value: "1.000",
+    value: "10.000",
     subValue: "kg",
     label: "Gordura Eliminada"
   },
