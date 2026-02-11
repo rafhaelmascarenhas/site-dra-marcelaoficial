@@ -27,7 +27,7 @@ export const DIAGNOSTICS_DATA = [
       'Análise da microbiota e sensibilidades',
     ],
     icon: Activity,
-    image: "https://images.unsplash.com/photo-1530497610245-94d3c16cda28?q=80&w=1000&auto=format&fit=crop" // Abstract cell/biological luxury
+    image: "testeepigenetico.webp"
   },
   {
     title: 'Mapeamento Genético (DNA)',
@@ -39,8 +39,7 @@ export const DIAGNOSTICS_DATA = [
       'Predisposição a doenças e longevidade',
     ],
     icon: Dna,
-    // IMAGE REMOVED to trigger Pure Glass Effect in Diagnostics.tsx
-    image: "" 
+    image: "mapeamentogenetico.webp" 
   },
 ];
 
@@ -71,7 +70,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'Para menopausa, endometriose, SOP e recuperação da libido e massa magra.',
     tags: ['Menopausa', 'Andropausa', 'Queda de libido', 'Lipedema'],
     icon: UserCheck,
-    image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?q=80&w=1000&auto=format&fit=crop", // Woman confident/sunlight
+    image: "impanteshormonais.webp",
     colSpan: "md:col-span-1",
     tagsContainerClass: "",
   },
@@ -81,7 +80,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'Protocolos exclusivos para beauty, performance cognitiva, detox e energia.',
     tags: ['Performance', 'Beleza', 'Detox', 'Disposição'],
     icon: Syringe,
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=1000&auto=format&fit=crop", // Spa/Clinic Luxury
+    image: "soroterapias.webp",
     colSpan: "md:col-span-1",
     tagsContainerClass: "max-w-[250px]", 
   },
@@ -91,7 +90,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'Uma "faxina celular" que reativa suas defesas e restaura a saúde íntima.',
     tags: ['Imunidade', 'Saúde'],
     icon: Shield,
-    image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1000&auto=format&fit=crop", // Yoga/Peace/Wellness
+    image: "imunoestimulante.webp",
     colSpan: "md:col-span-1",
     tagsContainerClass: "",
   },
@@ -103,7 +102,7 @@ export const JOURNEY_STEPS = [
     title: 'Pré-Consulta',
     description: 'Anamnese profunda sobre sono, rotina e dieta, somada à Bioimpedância de alta precisão.',
     icon: Clock,
-    image: "https://images.unsplash.com/photo-1551076805-e1869033e561?q=80&w=1000&auto=format&fit=crop" // High end consultation
+    image: "preconsulta.webp"
   },
   {
     step: '02',
@@ -124,7 +123,7 @@ export const JOURNEY_STEPS = [
     title: 'Execução',
     description: 'Aplicação de protocolos e acompanhamentos multidisciplinar e contínuos',
     icon: Syringe,
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=1000&auto=format&fit=crop" // Clinic/Treatment
+    image: "execucao.webp"
   },
 ];
 

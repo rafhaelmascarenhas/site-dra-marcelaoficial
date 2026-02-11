@@ -17,6 +17,7 @@ export const Hero: React.FC = () => {
 
   // Images for the carousel
   const carouselImages = [
+    { src: "consulta.webp", alt: "Dra Marcela Brasil - Consulta" },
     { src: "hero1.webp", alt: "Dra Marcela Brasil - Portrait" },
     { src: "hero2.webp", alt: "Dra Marcela Brasil - Clinic" },
     { src: "hero3.webp", alt: "Dra Marcela Brasil - Consultation" },
