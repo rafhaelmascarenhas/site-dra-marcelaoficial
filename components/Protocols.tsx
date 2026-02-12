@@ -13,10 +13,10 @@ interface ProtocolCardProps {
 const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 20 }} // Reduzi o Y para ser mais sutil
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+      viewport={{ once: true, margin: "-50px" }} // Ajustei a margem para disparar um pouco antes
+      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }} // Aumentei duration para suavizar
       className={`
         relative group overflow-hidden rounded-[2.5rem] h-[480px]
         ${protocol.colSpan}

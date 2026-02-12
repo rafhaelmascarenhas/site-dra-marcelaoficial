@@ -23,10 +23,10 @@ export const Diagnostics: React.FC = () => {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 20 }} // Reduzi de 40 para 20 (mais sutil)
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px" }}
-            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }} // Ajuste de margem para disparar antes
+            transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }} // Aumentei duration
             className={cn(
             "group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full transition-all duration-500",
             isGeneticsCard 
