@@ -5,19 +5,8 @@ import { ScanLine, Calendar, Check } from 'lucide-react';
 import { StarButton } from './ui/star-button';
 import { cn } from '../lib/utils';
 
-export const Diagnostics: React.FC = () => {
-  const epigeneticsData = DIAGNOSTICS_DATA[0];
-  const geneticsData = DIAGNOSTICS_DATA[1];
-
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
-
-  // Shared Card Component
-  const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], index: number }) => {
+// Shared Card Component - Extracted to prevent re-renders/blinking
+const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], index: number }) => {
     // Logic: If no image is provided, render the "Genetics" style card (Liquid Black Glass)
     const isGeneticsCard = !data.image;
 
@@ -137,6 +126,17 @@ export const Diagnostics: React.FC = () => {
             </div>
         </motion.div>
     );
+};
+
+export const Diagnostics: React.FC = () => {
+  const epigeneticsData = DIAGNOSTICS_DATA[0];
+  const geneticsData = DIAGNOSTICS_DATA[1];
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
