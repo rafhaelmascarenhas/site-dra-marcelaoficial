@@ -129,7 +129,7 @@ export const Footer: React.FC = () => {
               Dra. Marcela Brasil
             </span>
             <p className="text-gray-400 max-w-sm leading-relaxed">
-              Medicina de precisão focada em longevidade, emagrecimento e performance. Mapeando sua biologia para resultados definitivos.
+              Medicina de precisão aplicada à longevidade, emagrecimento e alta performance. Mais do que intervenções pontuais, seu trabalho é desenhar um plano claro, baseado em ciência, que gere resultado definitivo, mensurável e fisiologicamente coerente.
             </p>
           </div>
           

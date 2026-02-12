@@ -75,7 +75,7 @@ export const PROTOCOLS_DATA = [
     tagsContainerClass: "",
   },
   {
-    title: 'Soroterapia (Injetáveis)',
+    title: 'Terapias injetáveis',
     description: 'Nutrientes 100% absorvíveis na corrente sanguínea.',
     fullDescription: 'Protocolos exclusivos para beauty, performance cognitiva, detox e energia.',
     tags: ['Performance', 'Beleza', 'Detox', 'Disposição'],

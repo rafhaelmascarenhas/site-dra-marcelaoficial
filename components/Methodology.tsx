@@ -16,7 +16,7 @@ export const Methodology: React.FC = () => {
                     <span className="text-[#F9F8F6] font-bold tracking-widest text-xs uppercase">Jornada do Paciente</span>
                 </div>
                 <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-white tracking-tighter mb-4">
-                    Metodologia Proprietária.
+                    Metodologia Exclusiva.
                 </h2>
                 <p className="font-medium text-gray-200 text-lg md:text-xl max-w-2xl">
                     Do diagnóstico à execução. Uma jornada clara, sem suposições.

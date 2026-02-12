@@ -34,7 +34,7 @@ export const Bio: React.FC = () => {
                     </div>
                     <div>
                         <p className="text-[10px] font-bold text-gray-300 uppercase tracking-wider mb-0.5">Experiência</p>
-                        <p className="text-lg font-extrabold text-white leading-none">+15 Anos</p>
+                        <p className="text-lg font-extrabold text-white leading-none">+12 Anos</p>
                     </div>
                 </div>
                 
@@ -51,15 +51,21 @@ export const Bio: React.FC = () => {
                     <h2 className="font-sans font-extrabold text-4xl md:text-5xl text-white tracking-tighter leading-tight">
                         Dra. Marcela Brasil
                     </h2>
-                    <p className="text-xl text-gray-300 font-medium mt-2">Diretora Clínica & Pesquisadora</p>
+                    <p className="text-xl text-gray-300 font-medium mt-2">Médica & Diretora Clínica</p>
                 </div>
                 
                 <div className="space-y-6 font-medium text-gray-200 leading-relaxed text-lg">
                     <p>
-                        Defensora de uma medicina que não apenas remedia, mas <span className="text-white font-bold border-b border-[#D4AF37]">potencializa a vida humana</span>. Com uma visão integrativa e tecnologia de ponta, Dra. Marcela construiu sua reputação baseada em resultados mensuráveis.
+                        Dra. Marcela Brasil defende uma medicina estratégica, fundamentada em ciência, dados e individualização real.
                     </p>
                     <p>
-                        "O foco não é apenas tratar uma queixa pontual, mas mapear o funcionamento biológico do paciente para desbloquear sua melhor versão."
+                        Com 12 anos de atuação clínica, seu trabalho vai além da queixa imediata. Ela investiga profundamente cada paciente, correlaciona sinais, exames e histórico, e estrutura protocolos personalizados voltados ao reequilíbrio hormonal, metabólico e inflamatório.
+                    </p>
+                    <p>
+                        Aliando tecnologia de ponta a um acompanhamento próximo e criterioso, construiu sua reputação com base em resultados consistentes, mensuráveis e sustentáveis.
+                    </p>
+                    <p className="italic text-white border-l-4 border-[#D4AF37] pl-4 py-2 bg-white/5 rounded-r-lg">
+                        “O objetivo não é apenas aliviar sintomas, mas compreender o funcionamento biológico individual de cada paciente para conduzi-lo à sua melhor performance física e metabólica.”
                     </p>
                 </div>
 
