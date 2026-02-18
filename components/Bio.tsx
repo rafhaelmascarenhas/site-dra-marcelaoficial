@@ -1,13 +1,12 @@
 import React from 'react';
 import { Award, Calendar, FileText } from 'lucide-react';
 import { StarButton } from './ui/star-button';
+import { CONTACT_INFO } from '../constants';
 
 export const Bio: React.FC = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}`, '_blank');
   };
 
   return (
@@ -72,11 +71,11 @@ export const Bio: React.FC = () => {
                 <div className="pt-6 flex flex-col sm:flex-row gap-4">
                     <div className="w-full sm:w-auto">
                         <StarButton 
-                            variant="primary" // Alterado para PRIMARY (Preto igual 'Iniciar Jornada')
+                            variant="primary"
                             className="w-full sm:w-[260px]"
-                            onClick={() => scrollToSection('contato')}
+                            onClick={handleWhatsAppClick}
                         >
-                            Agendar Consulta
+                            Agendar Avaliação
                             <Calendar className="w-4 h-4" />
                         </StarButton>
                     </div>

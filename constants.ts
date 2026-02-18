@@ -1,6 +1,13 @@
 
 import { FileText, Activity, Shield, Syringe, Zap, UserCheck, Clock, Brain, Dna } from 'lucide-react';
 
+export const CONTACT_INFO = {
+  whatsapp: '553799061771', // Number for link
+  phoneDisplay: '(37) 9906-1771', // Number for display
+  crm: 'CRM MG 63868',
+  email: 'comercialdramarcelabrasil@gmail.com'
+};
+
 export const NAV_LINKS = [
   { label: 'Diagnóstico', href: '#diagnostico' },
   { label: 'Protocolos', href: '#protocolos' },
@@ -50,7 +57,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'Reeducação metabólica somada a terapias injetáveis para queima de gordura visceral.',
     tags: ['Emagrecimento', 'Sem Reganho'],
     icon: Zap,
-    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=1000&auto=format&fit=crop", // Healthy food/Organic/Luxury
+    image: "resetslim.webp",
     colSpan: "md:col-span-2",
     tagsContainerClass: "",
   },
@@ -60,7 +67,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'A mais avançada tecnologia para potencializar seus resultados.',
     tags: ['Alta Performance', 'Tecnologia'],
     icon: Brain,
-    image: "https://images.unsplash.com/photo-1581093458791-9f30225d5d61?q=80&w=1000&auto=format&fit=crop", // Futuristic tech/Lab
+    image: "Transformx.webp",
     colSpan: "md:col-span-1",
     tagsContainerClass: "",
   },
@@ -70,7 +77,7 @@ export const PROTOCOLS_DATA = [
     fullDescription: 'Para menopausa, endometriose, SOP e recuperação da libido e massa magra.',
     tags: ['Menopausa', 'Andropausa', 'Queda de libido', 'Lipedema'],
     icon: UserCheck,
-    image: "impanteshormonais.webp",
+    image: "implantes.webp",
     colSpan: "md:col-span-1",
     tagsContainerClass: "",
   },

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Instagram, Mail } from 'lucide-react';
-import { NAV_LINKS } from '../constants';
+import { Menu, X, Instagram, Mail, Phone } from 'lucide-react';
+import { NAV_LINKS, CONTACT_INFO } from '../constants';
 import { StarButton } from './ui/star-button';
 
 export const Navbar: React.FC = () => {
@@ -15,12 +15,8 @@ export const Navbar: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsOpen(false);
-    }
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}`, '_blank');
   };
 
   return (
@@ -29,7 +25,6 @@ export const Navbar: React.FC = () => {
         <div className={`
             pointer-events-auto
             flex items-center justify-between
-            /* LIQUID GLASS - Adjusted for Dark Theme */
             bg-[#977C71]/30 backdrop-blur-xl
             border border-white/20
             shadow-lg shadow-black/10
@@ -41,7 +36,6 @@ export const Navbar: React.FC = () => {
             }
         `}>
           
-          {/* Logo */}
           <a href="#" className="flex-shrink-0 flex items-center group relative z-10 mr-4">
             <span className={`
                 font-sans font-extrabold tracking-tight text-white transition-all duration-300 whitespace-nowrap
@@ -51,7 +45,6 @@ export const Navbar: React.FC = () => {
             </span>
           </a>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex flex-1 items-center justify-center">
              <div className="flex items-center gap-1">
                 {NAV_LINKS.map((link) => (
@@ -66,18 +59,16 @@ export const Navbar: React.FC = () => {
             </div>
           </div>
 
-          {/* CTA Button */}
           <div className="hidden md:flex flex-shrink-0 items-center justify-end relative z-10 ml-4">
             <StarButton 
                 variant="light"
-                onClick={() => scrollToSection('contato')}
+                onClick={handleWhatsAppClick}
                 className={isScrolled ? 'h-10 px-6 text-[10px]' : 'h-12 px-7 text-xs'}
             >
                 Agendar
             </StarButton>
           </div>
 
-          {/* Mobile Toggle */}
           <button 
             className="md:hidden p-2 rounded-full bg-white/10 border border-white/20 text-white hover:bg-white/20 transition-colors relative z-10 backdrop-blur-md" 
             onClick={() => setIsOpen(!isOpen)}
@@ -87,10 +78,8 @@ export const Navbar: React.FC = () => {
         </div>
       </nav>
 
-      {/* Mobile Menu Overlay */}
       {isOpen && (
         <div className="fixed inset-0 z-40 bg-[#977C71]/95 backdrop-blur-3xl md:hidden flex flex-col pt-32 px-8 animate-fade-in">
-           
           <div className="space-y-6 flex flex-col items-center text-center">
             {NAV_LINKS.map((link) => (
               <a 
@@ -108,7 +97,10 @@ export const Navbar: React.FC = () => {
             <StarButton 
                 variant="outline" 
                 className="w-full"
-                onClick={() => scrollToSection('contato')}
+                onClick={() => {
+                    handleWhatsAppClick();
+                    setIsOpen(false);
+                }}
             >
                 Agendar Consulta
             </StarButton>
@@ -149,17 +141,23 @@ export const Footer: React.FC = () => {
           <div>
             <h4 className="font-bold text-[#D4AF37] uppercase tracking-widest text-xs mb-6">Contato</h4>
             <div className="space-y-4">
+               <a href={`https://wa.me/${CONTACT_INFO.whatsapp}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+                <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37] group-hover:text-black transition-all">
+                  <Phone size={16} />
+                </div>
+                <span className="text-sm">{CONTACT_INFO.phoneDisplay}</span>
+              </a>
               <a href="https://www.instagram.com/dra.marcelabrasil/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37] group-hover:text-black transition-all">
                   <Instagram size={16} />
                 </div>
                 <span className="text-sm">@dramarcelabrasil</span>
               </a>
-              <a href="mailto:contato@clinica.com" className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
+              <a href={`mailto:${CONTACT_INFO.email}`} className="flex items-center gap-3 text-gray-400 hover:text-white transition-colors group">
                 <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-[#D4AF37] group-hover:text-black transition-all">
                   <Mail size={16} />
                 </div>
-                <span className="text-sm">contato@clinica.com</span>
+                <span className="text-sm">{CONTACT_INFO.email}</span>
               </a>
             </div>
           </div>
@@ -170,7 +168,7 @@ export const Footer: React.FC = () => {
             © {new Date().getFullYear()} Dra. Marcela Brasil. Todos os direitos reservados.
           </p>
           <p className="text-gray-600 text-xs flex items-center gap-1">
-            CRM/SP 123.456
+            {CONTACT_INFO.crm}
           </p>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { PROTOCOLS_DATA } from '../constants';
+import { PROTOCOLS_DATA, CONTACT_INFO } from '../constants';
 import { Plus } from 'lucide-react';
 import { StarButton } from './ui/star-button';
 import { cn } from '../lib/utils';
@@ -13,20 +13,18 @@ interface ProtocolCardProps {
 const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
   return (
     <motion.div 
-      initial={{ opacity: 0, y: 20 }} // Reduzi o Y para ser mais sutil
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-50px" }} // Ajustei a margem para disparar um pouco antes
-      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }} // Aumentei duration para suavizar
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
       className={`
         relative group overflow-hidden rounded-[2.5rem] h-[480px]
         ${protocol.colSpan}
-        /* GLASS EFFECT ON TAUPE BG */
         bg-white/5 backdrop-blur-md border border-white/10
         shadow-[0_4px_20px_rgb(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.2)] 
         transition-all duration-500
       `}
     >
-      {/* Background Image - Subtle Integration */}
       <div className="absolute inset-0 transition-transform duration-1000 ease-in-out group-hover:scale-105 opacity-80 group-hover:opacity-100">
         <img 
           src={protocol.image} 
@@ -36,14 +34,11 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
             group-hover:grayscale-0"
           loading="lazy"
         />
-        {/* Darker gradient for text readability */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#977C71]/95 via-black/20 to-transparent opacity-90 group-hover:opacity-80 transition-opacity duration-500"></div>
       </div>
       
-      {/* Content Container */}
       <div className="absolute inset-0 p-8 md:p-10 flex flex-col justify-between z-10">
         
-        {/* Top Header */}
         <div className="flex justify-between items-start">
             <div className="w-14 h-14 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center text-white shadow-lg group-hover:bg-[#D4AF37] group-hover:text-black group-hover:border-[#D4AF37] transition-all duration-500">
                 <protocol.icon size={24} strokeWidth={1.5} />
@@ -54,7 +49,6 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
             </div>
         </div>
 
-        {/* Bottom Content */}
         <div className="transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
             <div className={cn("flex flex-wrap gap-2 mb-4", protocol.tagsContainerClass)}>
                 {protocol.tags.map((tag, idx) => (
@@ -81,11 +75,9 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
 };
 
 export const Protocols: React.FC = () => {
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    
+  const handleWhatsAppClick = () => {
+    window.open(`https://wa.me/${CONTACT_INFO.whatsapp}`, '_blank');
   };
 
   return (
@@ -93,7 +85,6 @@ export const Protocols: React.FC = () => {
       
       <div className="container mx-auto max-w-6xl relative z-10">
         
-        {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-6 md:mb-12 gap-8">
             <div className="max-w-2xl">
                 <div className="flex items-center gap-3 mb-4">
@@ -108,11 +99,10 @@ export const Protocols: React.FC = () => {
                 </p>
             </div>
             
-            {/* Desktop Button */}
             <div className="hidden md:block">
                  <StarButton 
-                    variant="outline"
-                    onClick={() => scrollToSection('contato')}
+                    variant="primary"
+                    onClick={handleWhatsAppClick}
                 >
                     Agendar Avaliação
                     <Plus className="w-4 h-4" />
@@ -120,18 +110,16 @@ export const Protocols: React.FC = () => {
             </div>
         </div>
 
-        {/* Bento Grid Layout - Tightened Gap */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {PROTOCOLS_DATA.map((protocol, index) => (
             <ProtocolCard key={index} protocol={protocol} index={index} />
           ))}
         </div>
 
-        {/* Mobile Button */}
         <div className="mt-8 text-center md:hidden mb-4">
             <StarButton 
-                variant="outline"
-                onClick={() => scrollToSection('contato')}
+                variant="primary"
+                onClick={handleWhatsAppClick}
                 className="w-full"
             >
                 Agendar Avaliação
