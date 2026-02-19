@@ -37,12 +37,11 @@ export const Navbar: React.FC = () => {
         `}>
           
           <a href="#" className="flex-shrink-0 flex items-center group relative z-10 mr-4">
-            <span className={`
-                font-sans font-extrabold tracking-tight text-white transition-all duration-300 whitespace-nowrap
-                ${isScrolled ? 'text-base md:text-lg' : 'text-lg md:text-xl'}
-            `}>
-              Dra. Marcela Brasil
-            </span>
+            <img 
+              src="/logomarcelabrasil.svg" 
+              alt="Dra. Marcela Brasil Logo" 
+              className={`transition-all duration-300 ${isScrolled ? 'h-7' : 'h-9'}`}
+            />
           </a>
 
           <div className="hidden md:flex flex-1 items-center justify-center">
@@ -117,9 +116,11 @@ export const Footer: React.FC = () => {
       <div className="container mx-auto max-w-6xl">
         <div className="grid md:grid-cols-4 gap-12 mb-16">
           <div className="col-span-1 md:col-span-2">
-            <span className="font-sans font-extrabold text-2xl tracking-tight text-white mb-6 block">
-              Dra. Marcela Brasil
-            </span>
+            <img 
+              src="/logomarcelabrasil.svg" 
+              alt="Dra. Marcela Brasil Logo" 
+              className="h-10 mb-6"
+            />
             <p className="text-gray-400 max-w-sm leading-relaxed">
               Medicina de precisão aplicada à longevidade, emagrecimento e alta performance. Mais do que intervenções pontuais, seu trabalho é desenhar um plano claro, baseado em ciência, que gere resultado definitivo, mensurável e fisiologicamente coerente.
             </p>
