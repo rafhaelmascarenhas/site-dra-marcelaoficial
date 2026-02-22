@@ -16,7 +16,7 @@ function App() {
         <Protocols />
         <Diagnostics />
         <Methodology />
-        <Authority />
+        {/* <Authority /> */}
         <Bio />
       </main>
       <Footer />
