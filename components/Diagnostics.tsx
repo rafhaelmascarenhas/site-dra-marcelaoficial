@@ -1,4 +1,5 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { DIAGNOSTICS_DATA } from '../constants';
 import { ScanLine, Calendar, Check } from 'lucide-react'; 
 import { StarButton } from './ui/star-button';
@@ -10,7 +11,11 @@ const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], ind
     const isGeneticsCard = !data.image;
 
     return (
-        <div
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             className={cn(
             "group relative overflow-hidden rounded-[2.5rem] h-[500px] w-full transition-all duration-500",
             isGeneticsCard 
@@ -119,7 +124,7 @@ const DiagnosticCard = ({ data, index }: { data: typeof DIAGNOSTICS_DATA[0], ind
                     </div>
                 </div>
             </div>
-        </div>
+        </motion.div>
     );
 };
 

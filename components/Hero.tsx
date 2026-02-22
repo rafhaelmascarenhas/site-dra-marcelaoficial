@@ -102,7 +102,7 @@ export const Hero: React.FC = () => {
                 <div className="w-full sm:w-auto">
                   <StarButton
                     variant="primary"
-                    onClick={(e) => scrollToSection(e, 'diagnostico')}
+                    onClick={(e) => scrollToSection(e, 'protocolos')}
                     className="w-full sm:w-auto min-w-[240px]"
                   >
                     Iniciar Jornada
