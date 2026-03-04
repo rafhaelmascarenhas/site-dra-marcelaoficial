@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { ArrowLeft, ArrowRight } from "lucide-react";
+import React, { useEffect, useState, useRef } from "react";
+import { ArrowLeft, ArrowRight, Volume2, VolumeX } from "lucide-react";
 import { motion, AnimatePresence, PanInfo } from "framer-motion";
 import { cn } from "../../lib/utils";
 
@@ -8,6 +8,7 @@ type Testimonial = {
   name: string;
   designation: string;
   src: string;
+  type?: 'image' | 'video';
 };
 
 export const AnimatedTestimonials = ({
@@ -20,6 +21,8 @@ export const AnimatedTestimonials = ({
   className?: string;
 }) => {
   const [active, setActive] = useState(0);
+  const [isMuted, setIsMuted] = useState(true);
+  const videoRefs = useRef<(HTMLVideoElement | null)[]>([]);
 
   const handleNext = () => {
     setActive((prev) => (prev + 1) % testimonials.length);
@@ -33,7 +36,11 @@ export const AnimatedTestimonials = ({
     return index === active;
   };
 
-  // Logic to handle drag end
+  const toggleMute = (e: React.MouseEvent) => {
+    e.stopPropagation(); // Previne que o clique dispare o drag acidentalmente
+    setIsMuted(!isMuted);
+  };
+
   const onDragEnd = (event: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
     if (info.offset.x > 50) {
       handlePrev();
@@ -49,6 +56,20 @@ export const AnimatedTestimonials = ({
     }
   }, [autoplay, active]);
 
+  useEffect(() => {
+    videoRefs.current.forEach((video, index) => {
+      if (video) {
+        video.muted = isMuted; // Aplica o estado de mute atual
+        if (isActive(index)) {
+          video.play().catch(e => console.error("Autoplay prevented:", e));
+        } else {
+          video.pause();
+          video.currentTime = 0;
+        }
+      }
+    });
+  }, [active, isMuted]);
+
   const randomRotateY = () => {
     return Math.floor(Math.random() * 21) - 10;
   };
@@ -57,7 +78,7 @@ export const AnimatedTestimonials = ({
     <div className={cn("max-w-sm md:max-w-4xl mx-auto px-4 md:px-8 lg:px-12 py-10 md:py-20", className)}>
       <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
         <div>
-          <div className="relative h-80 w-full cursor-grab active:cursor-grabbing">
+          <div className="relative h-[480px] md:h-80 w-full cursor-grab active:cursor-grabbing flex justify-center">
             <AnimatePresence>
               {testimonials.map((testimonial, index) => (
                 <motion.div
@@ -92,20 +113,41 @@ export const AnimatedTestimonials = ({
                   dragConstraints={{ left: 0, right: 0 }}
                   dragElastic={0.2}
                   onDragEnd={onDragEnd}
-                  className="absolute inset-0 origin-bottom"
+                  className="absolute inset-0 origin-bottom flex justify-center group" // Adicionado group para hover
                 >
-                  <img
-                    src={testimonial.src}
-                    alt={testimonial.name}
-                    draggable={false}
-                    className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white/20 pointer-events-none"
-                  />
+                  {testimonial.type === 'video' ? (
+                     <div className="relative h-full w-auto flex justify-center">
+                       <video
+                          ref={el => videoRefs.current[index] = el}
+                          src={testimonial.src}
+                          className="h-full w-auto max-w-full rounded-[2.5rem] object-cover shadow-xl border-4 border-white/20"
+                          loop
+                          playsInline
+                        />
+                        {/* Botão de Mute sobreposto ao vídeo */}
+                        {isActive(index) && (
+                          <button
+                            onClick={toggleMute}
+                            className="absolute bottom-4 right-4 h-10 w-10 bg-black/50 hover:bg-black/70 backdrop-blur-md rounded-full flex items-center justify-center text-white transition-all z-50 cursor-pointer"
+                          >
+                            {isMuted ? <VolumeX size={18} /> : <Volume2 size={18} />}
+                          </button>
+                        )}
+                     </div>
+                  ) : (
+                    <img
+                      src={testimonial.src}
+                      alt={testimonial.name}
+                      draggable={false}
+                      className="h-full w-full rounded-[2.5rem] object-cover object-center shadow-xl border-4 border-white/20 pointer-events-none"
+                    />
+                  )}
                 </motion.div>
               ))}
             </AnimatePresence>
           </div>
         </div>
-        <div className="flex justify-between flex-col py-4">
+        <div className="flex justify-between flex-col py-4 mt-8 md:mt-0">
           <motion.div
             key={active}
             initial={{
@@ -160,13 +202,13 @@ export const AnimatedTestimonials = ({
           <div className="flex gap-4 pt-12 md:pt-0">
             <button
               onClick={handlePrev}
-              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10"
+              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10 z-50"
             >
               <ArrowLeft className="h-6 w-6 text-white group-hover/button:text-white group-hover/button:rotate-12 transition-transform duration-300" />
             </button>
             <button
               onClick={handleNext}
-              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10"
+              className="h-12 w-12 rounded-full bg-white/10 flex items-center justify-center group/button hover:bg-[#D4AF37] hover:text-white transition-colors duration-300 border border-white/10 z-50"
             >
               <ArrowRight className="h-6 w-6 text-white group-hover/button:text-white group-hover/button:-rotate-12 transition-transform duration-300" />
             </button>

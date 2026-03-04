@@ -1,4 +1,3 @@
-
 import { FileText, Activity, Shield, Syringe, Zap, UserCheck, Clock, Brain, Dna } from 'lucide-react';
 
 export const CONTACT_INFO = {
@@ -134,12 +133,21 @@ export const JOURNEY_STEPS = [
   },
 ];
 
-export const TESTIMONIALS = [
+export type TestimonialData = {
+  quote: string;
+  name: string;
+  designation: string;
+  src: string;
+  type?: 'image' | 'video'; // optional property to specify media type, default is image
+};
+
+export const TESTIMONIALS: TestimonialData[] = [
   {
     quote: "Após meses tentando engravidar e sofrendo perdas, o tratamento focado recuperou minha fertilidade. Hoje realizo meu sonho.",
-    name: 'Lais Rezende',
+    name: 'Paciente Satisfeita', // Replace with real name if you want
     designation: 'Programa de Fertilidade',
-    src: "https://images.unsplash.com/photo-1590650516494-0c8e4a4dd67e?q=80&w=2071&auto=format&fit=crop" // Elegant woman portrait
+    src: "IMG_4151 (video-converter.com).mp4", // O vídeo que você subiu
+    type: 'video' // Avisando ao componente que isso é um vídeo
   },
   {
     quote: "Senti a melhora do sono e disposição logo no primeiro dia de reposição hormonal. Minha qualidade de vida mudou da água para o vinho.",
