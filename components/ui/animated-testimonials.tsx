@@ -49,12 +49,16 @@ export const AnimatedTestimonials = ({
     }
   };
 
+  // Se tem vídeo tocando E som ligado, vamos pausar o autoplay do carrossel
+  const isVideoPlayingWithSound = testimonials[active]?.type === 'video' && !isMuted;
+
   useEffect(() => {
-    if (autoplay) {
+    // Só gira o carrossel se tiver autoplay ligado e não tiver um vídeo com som rolando
+    if (autoplay && !isVideoPlayingWithSound) {
       const interval = setInterval(handleNext, 8000); 
       return () => clearInterval(interval);
     }
-  }, [autoplay, active]);
+  }, [autoplay, active, isVideoPlayingWithSound]);
 
   useEffect(() => {
     videoRefs.current.forEach((video, index) => {
