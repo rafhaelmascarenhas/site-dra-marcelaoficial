@@ -131,8 +131,16 @@ export const Hero: React.FC = () => {
             variants={fadeUpVariants}
             initial="hidden"
             animate="visible"
-            className="w-full mt-8"
+            className="w-full mt-8 relative flex flex-col items-center"
         >
+             {/* Tag Dra. Marcela Brasil - Elegant design */}
+             <div className="mb-4 flex items-center gap-4">
+                <div className="h-px w-8 bg-gradient-to-r from-transparent to-[#D4AF37]/50"></div>
+                <span className="text-white/80 font-serif italic text-lg tracking-widest font-light">
+                  Dra. Marcela Brasil
+                </span>
+                <div className="h-px w-8 bg-gradient-to-l from-transparent to-[#D4AF37]/50"></div>
+             </div>
              <FeatureCarousel images={carouselImages} />
         </motion.div>
 
