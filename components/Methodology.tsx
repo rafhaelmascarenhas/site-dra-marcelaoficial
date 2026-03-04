@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { JOURNEY_STEPS } from '../constants';
 import { ArrowRight } from 'lucide-react';
 
@@ -26,12 +25,8 @@ export const Methodology: React.FC = () => {
 
         <div className="grid md:grid-cols-2 gap-5">
             {JOURNEY_STEPS.map((step, index) => (
-              <motion.div 
+              <div 
                 key={index} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
                 className="group relative h-[340px] rounded-[2.5rem] overflow-hidden border border-white/10 bg-white/5 shadow-[0_4px_20px_rgb(0,0,0,0.1)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.2)] transition-all duration-500"
               >
                  {/* Background Image */}
@@ -71,7 +66,7 @@ export const Methodology: React.FC = () => {
                          </p>
                      </div>
                  </div>
-              </motion.div>
+              </div>
             ))}
         </div>
 

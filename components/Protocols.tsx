@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import { PROTOCOLS_DATA, CONTACT_INFO } from '../constants';
 import { Plus } from 'lucide-react';
 import { StarButton } from './ui/star-button';
@@ -12,11 +11,7 @@ interface ProtocolCardProps {
 
 const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
+    <div 
       className={`
         relative group overflow-hidden rounded-[2.5rem] h-[480px]
         ${protocol.colSpan}
@@ -70,7 +65,7 @@ const ProtocolCard: React.FC<ProtocolCardProps> = ({ protocol, index }) => {
         </div>
 
       </div>
-    </motion.div>
+    </div>
   );
 };
 
